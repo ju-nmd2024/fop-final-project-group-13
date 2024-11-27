@@ -1,31 +1,57 @@
-//game logig variables
+// game logic variables
 
+let y = 350;
+let x = 350;
+let angle = 0;
 
 function setup() {
-  createCanvas(2000, 2000);
+  createCanvas(1000, 1000);
+  background(255,255,255);
+  angleMode(DEGREES); // set the angle mode to degrees.
 }
 
+// switch cases that moves the map when pressing WASD.
+
+function movemap(){
+
+switch(key){
+
+case "w":
+y += -1;
+
+break;
+
+case "s":
+y += +1;
+
+break;
+
+case "a":
+  rotate(angle += 0.1);
+
+  break;
+
+case "d":
+  rotate(angle += -0.1);
+
+}
+
+}
+
+// temporary function that draws the map
 
 function map(){
+push();
 fill (150, 150, 150);
 noStroke();
-rect (0, 0, 1000, 1000);
+rect (x, y, 500, 500);
+pop();
 }
 
-//Ambulance
-function ambulance(){
-  fill (250, 250, 0);
-  noStroke();
-  rect (100, 100, 100, 200);
-  //window
-  fill(0);
-  noStroke();
-  rect (110, 110, 80, 50);
 
-}
 
 function draw() {
+  background(255,255,255);
+  movemap();
   map();
-  ambulance();
- 
 }
