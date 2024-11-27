@@ -2,7 +2,14 @@
 
 
 function setup() {
-  createCanvas(800, 600);
+  createCanvas(2000, 2000);
+}
+
+
+function map(){
+fill (150, 150, 150);
+noStroke();
+rect (0, 0, 1000, 1000);
 }
 
 //Ambulance
@@ -17,11 +24,8 @@ function ambulance(){
 
 }
 
-function map(){
-
-}
-
 function draw() {
-  background(255, 140, 0);
+  map();
   ambulance();
+ 
 }
