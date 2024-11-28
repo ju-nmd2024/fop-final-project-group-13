@@ -3,12 +3,16 @@
 let y = 0;
 let x = 0;
 let angle = 0;
+let ambulance;
+let gameMap;
 
 function setup() {
   createCanvas(1000, 1000);
   angleMode(DEGREES); // set the angle mode to degrees.
-  rectMode(CENTER); 
+  imageMode(CENTER); 
   frameRate(60);
+  ambulance = loadImage('Ambulance.png');
+  gameMap = loadImage('TestTrack.png');
 }
 
 // switch cases that moves the map when pressing WASD.
@@ -30,12 +34,12 @@ case "s":
 break;
 
 case "a":
-  angle -= 1;
+  angle += 1;
 
 break;
 
 case "d":
-  angle += 1;
+  angle -= 1;
 
   break;
 
@@ -43,32 +47,27 @@ case "d":
 
 }
 
-// function that draws the placeholder map
+// function that draws the map
 
 function map(){
 push();
-translate(width /2, height /2); // set origin point to center
 rotate(angle);
-fill (150, 150, 150);
-noStroke();
-rect (x, y, 500, 500);
+image(gameMap, x,y);
 pop();
 }
 
-// function that draws the placeholder ambulance
+// function that draws the ambulance
 
-function tempAmb(){
+function Amb(){
 push();
-translate(width /2, height /2);
-fill(0);
-rect(0, 0, 10, 20);
+scale(0.5);
+image(ambulance, 1000, 1000);
 pop();
 }
 
 
 function draw() {
-  background(255,255,255);
   map();
   movemap();
-  tempAmb();
+  Amb();
 }
