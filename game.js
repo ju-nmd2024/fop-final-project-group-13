@@ -18,22 +18,24 @@ function movemap(){
 switch(key){
 
 case "w":
-y += +1;
+y -= cos(angle) * cos(angle);
 
 break;
 
 case "s":
-y += -1;
+  y += cos(angle) * cos(angle);
 
 break;
 
 case "a":
-  rotate(angle += -0.1);
+  angle -= 1;
 
 break;
 
 case "d":
-  rotate(angle += +0.1);
+  angle += 1;
+
+  break;
 
 }
 
@@ -43,7 +45,7 @@ case "d":
 
 function map(){
 push();
-translate(width /2, height /2);
+translate(width /2, height /2); // set origin point to center
 rotate(angle);
 fill (150, 150, 150);
 noStroke();
@@ -54,8 +56,10 @@ pop();
 // function that draws the placeholder ambulance
 
 function tempAmb(){
-fill (0);
+push();
+fill(0);
 rect(350, 350, 10, 20);
+pop();
 }
 
 
