@@ -6,8 +6,8 @@ let angle = 0;
 
 function setup() {
   createCanvas(1000, 1000);
-  angleMode(DEGREES);
-  rectMode(CENTER); // set the angle mode to degrees.
+  angleMode(DEGREES); // set the angle mode to degrees.
+  rectMode(CENTER); 
   frameRate(60);
 }
 
@@ -18,12 +18,14 @@ function movemap(){
 switch(key){
 
 case "w":
-y -= cos(angle) * cos(angle);
+y += cos(angle);
+x += sin(angle);
 
 break;
 
 case "s":
-  y += cos(angle) * cos(angle);
+  y -= cos(angle);
+  x -= sin(angle);
 
 break;
 
@@ -57,8 +59,9 @@ pop();
 
 function tempAmb(){
 push();
+translate(width /2, height /2);
 fill(0);
-rect(350, 350, 10, 20);
+rect(0, 0, 10, 20);
 pop();
 }
 
@@ -67,4 +70,5 @@ function draw() {
   background(255,255,255);
   map();
   movemap();
+  tempAmb();
 }
