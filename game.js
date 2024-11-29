@@ -12,61 +12,64 @@ function setup() {
   angleMode(DEGREES); //set the angle mode to degrees.
   imageMode(CENTER); //Images drawn with their center as the origin
   frameRate(60);
-  ambulance = loadImage('Ambulance.png');
-  gameMap = loadImage('TestTrack.png');
+  ambulance = loadImage("Ambulance.png");
+  gameMap = loadImage("TestTrack.png");
 }
+
 
 // switch cases that moves the map when pressing WASD.
 
-function movemap(){
+function movemap() {
+  switch (key) {
+    case "w":
+      y += cos(angle) * speed; //moves the map forward along its rotated axis
+      x += sin(angle) * speed;
 
-switch(key){
+      break;
 
-case "w":
-y += cos(angle) * speed; //moves the map forward along its rotated axis
-x += sin(angle) * speed;
+    case "s":
+      y -= cos(angle) * speed; //moves the map backwards
+      x -= sin(angle) * speed;
 
-break;
+      break;
 
-case "s":
-  y -= cos(angle) * speed; //moves the map backwards
-  x -= sin(angle) * speed;
+    case "a":
+      angle += 1; //rotate the map left
 
-break;
+      break;
 
-case "a":
-  angle += 1; //rotate the map left
+    case "d":
+      angle -= 1; //rotate the map right
 
-break;
-
-case "d":
-  angle -= 1; //rotate the map right
-
-  break;
-
-}
-
+      break;
+  }
 }
 
 // function that draws the map
-function map(){
-push();
-rotate(angle);
-image(gameMap, x,y);
-pop();
+function map() {
+  push();
+  rotate(angle);
+  image(gameMap, x, y);
+  pop();
 }
 
 // function that draws the ambulance
-function Amb(){
-push();
-scale(0.5);
-image(ambulance, 1000, 1000);
-pop();
+class Amb {
+  constractor() {}
+  draw() {
+    push();
+    scale(0.5);
+    image(ambulance, 1000, 1000);
+    pop();
+  }
 }
+
+let amb = new Amb(); 
 
 
 function draw() {
   map();
   movemap();
-  Amb();
+  amb.draw();
 }
+
