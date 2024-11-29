@@ -5,6 +5,7 @@ let x = 0;
 let angle = 0;
 let ambulance;
 let gameMap;
+let speed = 5;
 
 function setup() {
   createCanvas(1000, 1000);
@@ -22,14 +23,14 @@ function movemap(){
 switch(key){
 
 case "w":
-y += cos(angle);
-x += sin(angle);
+y += cos(angle) * speed;
+x += sin(angle) * speed;
 
 break;
 
 case "s":
-  y -= cos(angle);
-  x -= sin(angle);
+  y -= cos(angle) * speed;
+  x -= sin(angle) * speed;
 
 break;
 
