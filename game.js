@@ -16,7 +16,6 @@ function setup() {
   gameMap = loadImage("TestTrack.png");
 }
 
-
 // switch cases that moves the map when pressing WASD.
 
 function movemap() {
@@ -64,12 +63,10 @@ class Amb {
   }
 }
 
-let amb = new Amb(); 
-
+let amb = new Amb();
 
 function draw() {
   map();
   movemap();
   amb.draw();
 }
-
