@@ -8,7 +8,7 @@ let angle = 0; //Map rotation angle
 let ambulance;
 let gameMap;
 let Road_Jump;
-let speed = 3;
+let speed = 1;
 let tileArray = [
   [0, 0, 0, 0, 0, 0, 0, 0],
   [0, 0, 0, 0, 0, 0, 0, 0],
@@ -90,7 +90,7 @@ class Tile {
     this.posY = posY;
   }
   draw() {
-    image(tile, this.posX, this.posY, this.size, this.size);
+    image(tile, this.posX + x, this.posY + y, this.size, this.size);
   }
 }
 
@@ -98,7 +98,7 @@ class Tile {
 function grid() {
   for (let i = 0; i < 8; i++) {
     for (let o = 0; o < 8; o++) {
-      tileArray[i][o] = new Tile(i * 50, o *50, 50, "Road_Jump.png");
+      tileArray[i][o] = new Tile(i * 50, o * 50, 50, "Road_Jump.png");
     }
   }
 }
@@ -109,6 +109,8 @@ function draw() {
   //map();
   movemap();
   //amb.draw();
+  translate(-100 + x,  -100 + y);
+  rotate(angle);
   for (let i = 0; i < 8; i++) {
     for (let o = 0; o < 8; o++) {
       tileArray[i][o].draw();
