@@ -1,4 +1,15 @@
 // game logic variables
+class Tile {
+  constructor(posX, posY, size, surface) {
+    this.surface = surface;
+    this.size = size;
+    this.posX = posX;
+    this.posY = posY;
+  }
+  draw() {
+    image(tile, this.posX + x, this.posY + y, this.size, this.size);
+  }
+}
 
 let y = 0;
 let x = 0;
@@ -10,19 +21,15 @@ let gameMap;
 let Road_Jump;
 let speed = 1;
 let tileArray = [
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
-  [0, 0, 0, 0, 0, 0, 0, 0],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
 ]; // A nested array that holds the tiles
-
-function preload() {
-  tile = loadImage("Road_Jump.png");
-}
 
 function setup() {
   createCanvas(1000, 1000);
@@ -31,7 +38,7 @@ function setup() {
   frameRate(60);
   ambulance = loadImage("Ambulance.png");
   gameMap = loadImage("TestTrack.png");
-
+  tile = loadImage("Road_Jump.png");
   grid();
 }
 
@@ -82,23 +89,11 @@ class Amb {
   }
 }
 
-class Tile {
-  constructor(posX, posY, size, surface) {
-    this.surface = surface;
-    this.size = size;
-    this.posX = posX;
-    this.posY = posY;
-  }
-  draw() {
-    image(tile, this.posX + x, this.posY + y, this.size, this.size);
-  }
-}
-
 // Grid system
 function grid() {
   for (let i = 0; i < 8; i++) {
     for (let o = 0; o < 8; o++) {
-      tileArray[i][o] = new Tile(i * 50, o * 50, 50, "Road_Jump.png");
+      tileArray[i][o] = new Tile(i * 150, o * 150, 150, "Road_Jump.png");
     }
   }
 }
@@ -107,13 +102,17 @@ let amb = new Amb();
 
 function draw() {
   //map();
+  background(200);
   movemap();
-  //amb.draw();
-  translate(-100 + x,  -100 + y);
-  rotate(angle);
+  push();
+  translate(a,  b); // change to -100, -100 later
+  rotate(angle, [width / 2, height / 2, 0]);
   for (let i = 0; i < 8; i++) {
     for (let o = 0; o < 8; o++) {
       tileArray[i][o].draw();
     }
   }
+  pop();
+  amb.draw();
+ 
 }
