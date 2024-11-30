@@ -19,7 +19,7 @@ let angle = 0; //Map rotation angle
 let ambulance;
 let gameMap;
 let Road_Jump;
-let speed = 1;
+let speed = 3;
 let tileArray = [
   [
     new Tile(),
