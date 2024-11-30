@@ -1,13 +1,14 @@
 // game logic variables
 class Tile {
-  constructor(posX, posY, size, surface) {
+  constructor(posX, posY, size, surface, attributes) {
     this.surface = surface;
     this.size = size;
     this.posX = posX;
     this.posY = posY;
+    this.attributes = attributes;
   }
   draw() {
-    image(tile, this.posX + x, this.posY + y, this.size, this.size);
+    image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
   }
 }
 
@@ -309,9 +310,15 @@ let tileArray = [
     new Tile(),
     new Tile(),
   ],
-
-
 ]; // A nested array that holds the tiles
+
+function level(lvl) {
+  switch (lvl) {
+    case 1:
+      tileArray[1][2].surface = tileAsphalt;
+      break;
+  }
+}
 
 function setup() {
   createCanvas(1000, 1000);
@@ -319,9 +326,10 @@ function setup() {
   imageMode(CENTER); //Images drawn with their center as the origin
   frameRate(60);
   ambulance = loadImage("Ambulance.png");
-  gameMap = loadImage("TestTrack.png");
-  tile = loadImage("Grass_PH.png");
+  tileDefault = loadImage("Grass_PH.png");
+  tileAsphalt = loadImage("Road_Straight.png");
   grid();
+  level(1);
 }
 
 // function that moves the map when pressing ARROW KEYS.
@@ -361,9 +369,8 @@ class Amb {
 function grid() {
   for (let i = 0; i < 16; i++) {
     for (let o = 0; o < 16; o++) {
-      tileArray[i][o] = new Tile(i * 50, o * 50, 50, "Grass_PH.png");
+      tileArray[i][o] = new Tile(i * 50, o * 50, 50, tileDefault);
     }
-
   }
 }
 
