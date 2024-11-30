@@ -21,14 +21,86 @@ let gameMap;
 let Road_Jump;
 let speed = 1;
 let tileArray = [
-  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
-  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
-  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
-  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
-  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
-  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
-  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
-  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
 ]; // A nested array that holds the tiles
 
 function setup() {
@@ -42,42 +114,26 @@ function setup() {
   grid();
 }
 
-// function that resets keypressed
-function keyReleased(){
+// function that moves the map when pressing ARROW KEYS.
 
-key = null;
-
-}
-
-// function that moves the map when pressing WASD.
 function movemap() {
-  switch (key) {
-    case "w":
-      y += cos(angle) * speed; //moves the map forward along its rotated axis
-      x += sin(angle) * speed;
-
-      break;
-
-    case "s":
-      y -= cos(angle) * speed; //moves the map backwards
-      x -= sin(angle) * speed;
-
-      break;
+  if (keyIsDown(UP_ARROW) == true) {
+    y += cos(angle) * speed;
+    x += sin(angle) * speed;
+  }
+  if (keyIsDown(DOWN_ARROW) == true) {
+    y -= cos(angle) * speed; //moves the map backwards
+    x -= sin(angle) * speed;
   }
 }
 
-function rotateMap(){
-  switch (key) {
-  case "a":
-    angle += 1; //rotate the map left
-    break;
-
-  case "d":
-    angle -= 1; //rotate the map right
-    break;
-
+function rotateMap() {
+  if (keyIsDown(LEFT_ARROW) == true) {
+    angle += 1;
   }
-
+  if (keyIsDown(RIGHT_ARROW) == true) {
+    angle -= 1;
+  }
 }
 
 // function that draws the map
@@ -127,5 +183,4 @@ function draw() {
   }
   pop();
   amb.draw();
- 
 }
