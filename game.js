@@ -30,8 +30,6 @@ let tileArray = [
     new Tile(),
     new Tile(),
     new Tile(),
-  ],
-  [
     new Tile(),
     new Tile(),
     new Tile(),
@@ -50,8 +48,6 @@ let tileArray = [
     new Tile(),
     new Tile(),
     new Tile(),
-  ],
-  [
     new Tile(),
     new Tile(),
     new Tile(),
@@ -70,8 +66,6 @@ let tileArray = [
     new Tile(),
     new Tile(),
     new Tile(),
-  ],
-  [
     new Tile(),
     new Tile(),
     new Tile(),
@@ -90,6 +84,14 @@ let tileArray = [
     new Tile(),
     new Tile(),
     new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
   ],
   [
     new Tile(),
@@ -100,7 +102,215 @@ let tileArray = [
     new Tile(),
     new Tile(),
     new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
   ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+  [
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+    new Tile(),
+  ],
+
+
 ]; // A nested array that holds the tiles
 
 function setup() {
@@ -110,7 +320,7 @@ function setup() {
   frameRate(60);
   ambulance = loadImage("Ambulance.png");
   gameMap = loadImage("TestTrack.png");
-  tile = loadImage("Road_Jump.png");
+  tile = loadImage("Grass_PH.png");
   grid();
 }
 
@@ -136,16 +346,6 @@ function rotateMap() {
   }
 }
 
-// function that draws the map
-function map() {
-  push();
-  scale(0.1);
-  rotate(angle);
-  image(gameMap, x, y);
-  // translate(gameMap, 1000, 1000);
-  pop();
-}
-
 // function that draws the ambulance
 class Amb {
   constructor() {}
@@ -159,25 +359,25 @@ class Amb {
 
 // Grid system
 function grid() {
-  for (let i = 0; i < 8; i++) {
-    for (let o = 0; o < 8; o++) {
-      tileArray[i][o] = new Tile(i * 150, o * 150, 150, "Road_Jump.png");
+  for (let i = 0; i < 16; i++) {
+    for (let o = 0; o < 16; o++) {
+      tileArray[i][o] = new Tile(i * 50, o * 50, 50, "Grass_PH.png");
     }
+
   }
 }
 
 let amb = new Amb();
 
 function draw() {
-  //map();
   background(200);
   movemap();
   rotateMap();
   push();
   translate(a + 500, b + 500); // change to -100, -100 later
   rotate(angle, [width / 2, height / 2, 0]);
-  for (let i = 0; i < 8; i++) {
-    for (let o = 0; o < 8; o++) {
+  for (let i = 0; i < 16; i++) {
+    for (let o = 0; o < 16; o++) {
       tileArray[i][o].draw();
     }
   }
