@@ -42,8 +42,14 @@ function setup() {
   grid();
 }
 
-// switch cases that moves the map when pressing WASD.
+// function that resets keypressed
+function keyReleased(){
 
+key = null;
+
+}
+
+// function that moves the map when pressing WASD.
 function movemap() {
   switch (key) {
     case "w":
@@ -57,15 +63,21 @@ function movemap() {
       x -= sin(angle) * speed;
 
       break;
-
-    case "a":
-      angle += 1; //rotate the map left
-      break;
-
-    case "d":
-      angle -= 1; //rotate the map right
-      break;
   }
+}
+
+function rotateMap(){
+  switch (key) {
+  case "a":
+    angle += 1; //rotate the map left
+    break;
+
+  case "d":
+    angle -= 1; //rotate the map right
+    break;
+
+  }
+
 }
 
 // function that draws the map
@@ -83,8 +95,8 @@ class Amb {
   constructor() {}
   draw() {
     push();
-    scale(0.5);
-    image(ambulance, a, b);
+    scale(1);
+    image(ambulance, a + 500, b + 500);
     pop();
   }
 }
@@ -104,8 +116,9 @@ function draw() {
   //map();
   background(200);
   movemap();
+  rotateMap();
   push();
-  translate(a,  b); // change to -100, -100 later
+  translate(a + 500, b + 500); // change to -100, -100 later
   rotate(angle, [width / 2, height / 2, 0]);
   for (let i = 0; i < 8; i++) {
     for (let o = 0; o < 8; o++) {
