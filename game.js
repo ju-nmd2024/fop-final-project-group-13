@@ -18,9 +18,11 @@ let a = x;
 let b = y;
 let angle = 0; //Map rotation angle
 let ambulance;
+let ambulanceSize = 300;
 let gameMap;
 let Road_Jump;
 let speed = 3;
+let tileSize = 320;
 let tileArray = [
   [
     new Tile(),
@@ -312,6 +314,7 @@ let tileArray = [
   ],
 ]; // A nested array that holds the tiles
 
+// Function to place the tiles
 function level(lvl) {
   switch (lvl) {
     case 1:
@@ -319,6 +322,8 @@ function level(lvl) {
       break;
   }
 }
+
+function atb() {}
 
 function setup() {
   createCanvas(1000, 1000);
@@ -360,7 +365,7 @@ class Amb {
   draw() {
     push();
     scale(1);
-    image(ambulance, a + 500, b + 500);
+    image(ambulance, a + 500, b + 500, ambulanceSize, ambulanceSize);
     pop();
   }
 }
@@ -369,7 +374,7 @@ class Amb {
 function grid() {
   for (let i = 0; i < 16; i++) {
     for (let o = 0; o < 16; o++) {
-      tileArray[i][o] = new Tile(i * 50, o * 50, 50, tileDefault);
+      tileArray[i][o] = new Tile(i * tileSize, o * tileSize, tileSize, tileDefault);
     }
   }
 }
