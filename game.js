@@ -1,6 +1,6 @@
 // game logic variables
 class Modifier {
-  constructor(posX, posY, size, surface, attributes) {
+  constructor(posX, posY, size, surface) {
     this.surface = surface;
     this.size = size;
     this.posX = posX;
@@ -367,6 +367,7 @@ function setup() {
   tileAsphaltJ = loadImage("Road_Jump.png");
   tileAsphaltR = loadImage("Road_Turn_Right.png");
   tileAsphaltL = loadImage("Road_Turn_Left.png");
+  wineBottle = loadImage("Wine_Bottle.png");
 
   grid();
   level(1);
