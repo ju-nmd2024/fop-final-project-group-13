@@ -16,11 +16,10 @@ let y = 0;
 let x = 0;
 let a = x;
 let b = y;
-let angle = 0; //Map rotation angle
+let angle = 0;
 let ambulance;
 let ambulanceSize = 300;
 let gameMap;
-let Road_Jump;
 let time = 0;
 let speed = 0;
 let maxSpeed = 10;
@@ -320,18 +319,25 @@ let tileArray = [
 // Function to place the tiles
 function level(lvl) {
   switch (lvl) {
-    case 1:
+    case 1: // Get to the accident
+      tileArray[1][1].surface = tileAsphalt;
+      tileArray[1][2].surface = tileAsphalt;
+      break;
+
+    case 2: // Get to the hospital
       tileArray[1][2].surface = tileAsphalt;
       break;
   }
 }
 
-function atb() {}
+function atb(
+
+
+
+) {}
 function hud() {
-
-textSize(32);
-text(`KPH: ${speed.toFixed(1)}`, 50, 50); // Speedometer ChatGPT
-
+  textSize(32);
+  text(`Speed: ${speed.toFixed(1)}`, 50, 50); // Speedometer ChatGPT
 }
 
 function setup() {
@@ -339,9 +345,14 @@ function setup() {
   angleMode(DEGREES); //set the angle mode to degrees.
   imageMode(CENTER); //Images drawn with their center as the origin
   frameRate(60);
+
   ambulance = loadImage("Ambulance.png");
   tileDefault = loadImage("Grass_PH.png");
   tileAsphalt = loadImage("Road_Straight.png");
+  tileAsphaltJ = loadImage("Road_Jump.png");
+  tileAsphaltR = loadImage("Road_Turn_Right.png");
+  tileAsphaltL = loadImage("Road_Turn_Left.png");
+
   grid();
   level(1);
 }
@@ -350,15 +361,14 @@ function setup() {
 
 function movemap() {
   if (keyIsDown(UP_ARROW) == true) {
-    
     speed = Math.min(maxSpeed, speed + acc);
-    
+
     y += cos(angle) * speed;
     x += sin(angle) * speed;
   }
   if (keyIsDown(DOWN_ARROW) == true) {
-
     speed = Math.min(maxSpeed, speed + acc);
+
     y -= cos(angle) * speed; //moves the map backwards
     x -= sin(angle) * speed;
   }
@@ -388,7 +398,12 @@ class Amb {
 function grid() {
   for (let i = 0; i < 16; i++) {
     for (let o = 0; o < 16; o++) {
-      tileArray[i][o] = new Tile(i * tileSize, o * tileSize, tileSize, tileDefault);
+      tileArray[i][o] = new Tile(
+        i * tileSize,
+        o * tileSize,
+        tileSize,
+        tileDefault
+      );
     }
   }
 }
