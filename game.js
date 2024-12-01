@@ -8,10 +8,9 @@ class Modifier {
     this.pickedUp = false;
   }
   draw() {
-
-    if(!this.pickedUp)
-
-    image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
+    if (!this.pickedUp) {
+      image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
+    }
   }
 }
 
@@ -348,8 +347,6 @@ function level(lvl) {
   }
 }
 
-
-
 function hud() {
   textSize(32);
   text(`Speed: ${speed.toFixed(1)}`, 50, 50); // Speedometer ChatGPT
@@ -369,6 +366,8 @@ function setup() {
   tileAsphaltL = loadImage("Road_Turn_Left.png");
   wineBottle = loadImage("Wine_Bottle.png");
 
+  modifier = new Modifier(5 * tileSize, 5 * tileSize, 50, wineBottle);
+
   grid();
   level(1);
 }
@@ -377,28 +376,21 @@ function setup() {
 
 function movemap() {
   if (keyIsDown(UP_ARROW)) {
-    if (speedCheck){
-      
+    if (speedCheck) {
       time = 0;
       speedCheck = false;
     }
     time += deltaTime;
     speed = Math.min(maxSpeed, time * acc);
-
-  }
-  else
-  if (keyIsDown(DOWN_ARROW)) {
+  } else if (keyIsDown(DOWN_ARROW)) {
     speed = Math.min(maxSpeed, time * -acc);
-
   } else {
     speedCheck = false;
     speed = Math.max(0, speed - acc * deltaTime);
-
   }
-  
+
   y += cos(angle) * speed;
   x += sin(angle) * speed;
-
 }
 
 function rotateMap() {
