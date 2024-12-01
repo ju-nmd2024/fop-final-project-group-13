@@ -1,4 +1,20 @@
 // game logic variables
+class Modifier {
+  constructor(posX, posY, size, surface, attributes) {
+    this.surface = surface;
+    this.size = size;
+    this.posX = posX;
+    this.posY = posY;
+    this.pickedUp = false;
+  }
+  draw() {
+
+    if(!this.pickedUp)
+
+    image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
+  }
+}
+
 class Tile {
   constructor(posX, posY, size, surface, attributes) {
     this.surface = surface;
@@ -23,7 +39,9 @@ let gameMap;
 let time = 0;
 let speed = 0;
 let maxSpeed = 10;
-let acc = 0.03;
+let speedCheck = false;
+let speedStore = 0;
+let acc = 0.003;
 let tileSize = 320;
 let tileArray = [
   [
@@ -330,11 +348,8 @@ function level(lvl) {
   }
 }
 
-function atb(
 
 
-
-) {}
 function hud() {
   textSize(32);
   text(`Speed: ${speed.toFixed(1)}`, 50, 50); // Speedometer ChatGPT
@@ -360,18 +375,29 @@ function setup() {
 // function that moves the map when pressing ARROW KEYS.
 
 function movemap() {
-  if (keyIsDown(UP_ARROW) == true) {
-    speed = Math.min(maxSpeed, speed + acc);
+  if (keyIsDown(UP_ARROW)) {
+    if (speedCheck){
+      
+      time = 0;
+      speedCheck = false;
+    }
+    time += deltaTime;
+    speed = Math.min(maxSpeed, time * acc);
 
-    y += cos(angle) * speed;
-    x += sin(angle) * speed;
   }
-  if (keyIsDown(DOWN_ARROW) == true) {
-    speed = Math.min(maxSpeed, speed + acc);
+  else
+  if (keyIsDown(DOWN_ARROW)) {
+    speed = Math.min(maxSpeed, time * -acc);
 
-    y -= cos(angle) * speed; //moves the map backwards
-    x -= sin(angle) * speed;
+  } else {
+    speedCheck = false;
+    speed = Math.max(0, speed - acc * deltaTime);
+
   }
+  
+  y += cos(angle) * speed;
+  x += sin(angle) * speed;
+
 }
 
 function rotateMap() {
