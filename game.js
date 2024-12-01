@@ -21,7 +21,10 @@ let ambulance;
 let ambulanceSize = 300;
 let gameMap;
 let Road_Jump;
-let speed = 3;
+let time = 0;
+let speed = 0;
+let maxSpeed = 10;
+let acc = 0.03;
 let tileSize = 320;
 let tileArray = [
   [
@@ -324,6 +327,12 @@ function level(lvl) {
 }
 
 function atb() {}
+function hud() {
+
+textSize(32);
+text(`KPH: ${speed.toFixed(1)}`, 50, 50); // Speedometer ChatGPT
+
+}
 
 function setup() {
   createCanvas(1000, 1000);
@@ -341,10 +350,15 @@ function setup() {
 
 function movemap() {
   if (keyIsDown(UP_ARROW) == true) {
+    
+    speed = Math.min(maxSpeed, speed + acc);
+    
     y += cos(angle) * speed;
     x += sin(angle) * speed;
   }
   if (keyIsDown(DOWN_ARROW) == true) {
+
+    speed = Math.min(maxSpeed, speed + acc);
     y -= cos(angle) * speed; //moves the map backwards
     x -= sin(angle) * speed;
   }
@@ -383,6 +397,7 @@ let amb = new Amb();
 
 function draw() {
   background(200);
+  hud();
   movemap();
   rotateMap();
   push();
