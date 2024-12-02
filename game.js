@@ -373,7 +373,6 @@ function setup() {
 }
 
 // function that moves the map when pressing ARROW KEYS.
-
 function movemap() {
   if (keyIsDown(UP_ARROW)) {
     if (speedCheck) {
