@@ -23,6 +23,7 @@ class Tile {
   }
   draw() {
     image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
+   checkPos(this.posX + x, this.posY + y, this.surface);
   }
 }
 // game logic variables
@@ -332,6 +333,32 @@ let tileArray = [
     new Tile(),
   ],
 ]; // A nested array that holds the tiles
+
+function checkPos(posX, posY, surface)
+ {
+  if (
+    a + 500 > posX - tileSize /2 &&
+    a + 500 < posX + tileSize /2 &&
+    b + 500 > posY - tileSize /2 &&
+    b + 500 < posY + tileSize /2
+  ) {
+    if (surface == tileDirt) {
+      maxSpeed = 5;
+      acc = 0.01;
+    } else if (surface == tileIceRoad) {
+      maxSpeed = 5;
+      acc = 0.001;
+    } else if (surface == tileAsphalt) {
+      maxSpeed = 10;
+      acc = 0.003;
+    } else if (surface == tileAsphaltJ) {
+      ambulanceSize = 350;
+    } else {
+      maxSpeed = 4;
+      acc = 0.001;
+      }
+  }
+}
 
 // Function to place the tiles
 function level(lvl) {
