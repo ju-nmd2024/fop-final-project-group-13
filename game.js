@@ -1,4 +1,3 @@
-// game logic variables
 class Modifier {
   constructor(posX, posY, size, surface) {
     this.surface = surface;
@@ -26,7 +25,7 @@ class Tile {
     image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
   }
 }
-
+// game logic variables
 let y = 0;
 let x = 0;
 let a = x;
@@ -343,6 +342,7 @@ function level(lvl) {
       tileArray[3][7].surface = tileAsphaltJ;
       tileArray[3][6].surface = tileAsphalt;
       tileArray[3][5].surface = tileAsphaltR;
+      tileArray[4][5].surface = tileAsphalt90L;
       break;
 
     case 2: // Get to the hospital
@@ -368,6 +368,11 @@ function setup() {
   tileAsphaltJ = loadImage("Road_Jump.png");
   tileAsphaltR = loadImage("Road_Turn_Right.png");
   tileAsphaltL = loadImage("Road_Turn_Left.png");
+  tileAsphalt90L = loadImage("Road_Straight90R.png");
+  tileAsphalt90R = loadImage("Road_Straight90L.png");
+  tileDirt = loadImage("Dirt.png");
+  tileDirtL = loadImage("DirtL.png");
+  tileDirtR = loadImage("DirtR.png");
   wineBottle = loadImage("Wine_Bottle.png");
 
   modifier = new Modifier(5 * tileSize, 5 * tileSize, 50, wineBottle);
