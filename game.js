@@ -337,10 +337,10 @@ let tileArray = [
 function checkPos(posX, posY, surface)
  {
   if (
-    a + 500 > posX - tileSize /2 &&
-    a + 500 < posX + tileSize /2 &&
-    b + 500 > posY - tileSize /2 &&
-    b + 500 < posY + tileSize /2
+    a + 500 >= posX &&
+    a + 500 < posX + tileSize &&
+    b + 500 >= posY &&
+    b + 500 < posY + tileSize
   ) {
     if (surface == tileDirt) {
       maxSpeed = 5;
