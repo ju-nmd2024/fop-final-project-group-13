@@ -14,11 +14,12 @@ class Modifier {
 }
 
 class Tile {
-  constructor(posX, posY, size, surface) {
+  constructor(posX, posY, size, surface, attr) {
     this.surface = surface;
     this.size = size;
     this.posX = posX;
     this.posY = posY;
+    this.attr = attr;
   }
   draw() {
     image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
@@ -40,7 +41,7 @@ let speedCheck = false;
 let speedStore = 0;
 let acc = 0.003;
 let tileRotate = 0;
-let tileSize = 30;
+let tileSize = 320;
 let tileArray = [
   [
     new Tile(),
@@ -342,10 +343,30 @@ function level(lvl) {
       tileArray[3][7].surface = tileAsphaltJ;
       tileArray[3][6].surface = tileAsphalt;
       tileArray[3][5].surface = tileAsphaltR;
-      tileArray[4][5].surface = tileAsphalt;
-      tileArray[5][5].surface = tileAsphalt;
-      tileArray[6][5].surface = tileAsphalt;
-      tileArray[7][5].surface = tileAsphaltR;
+      tileArray[4][5].surface = tileDirtR;
+      tileArray[5][5].surface = tileDirtR;
+      tileArray[6][5].surface = tileDirtR;
+      tileArray[7][5].surface = tileAsphaltR90;
+      tileArray[7][6].surface = tileAsphalt180;
+      tileArray[7][7].surface = tileAsphalt180;
+      tileArray[7][8].surface = tileDirt;
+      tileArray[7][9].surface = tileDirt;
+      tileArray[7][10].surface = tileDirt;
+      tileArray[7][11].surface = tileIceRoad;
+      tileArray[7][12].surface = tileIceRoad;
+      tileArray[8][12].surface = tileIceRoad;
+      tileArray[9][12].surface = tileIceRoad;
+      tileArray[9][11].surface = tileIceRoad;
+      tileArray[9][10].surface = tileAsphaltR;
+      tileArray[10][10].surface = tileAsphalt90;
+      tileArray[11][10].surface = tileAsphaltL270;
+      tileArray[11][9].surface = tileAsphalt;
+      tileArray[11][8].surface = tileAsphaltL;
+      tileArray[10][8].surface = tileAsphalt90;
+      tileArray[9][8].surface = tileAsphaltR270;
+      tileArray[9][7].surface = tileAsphalt;
+      tileArray[9][6].surface = tileAsphalt;
+      tileArray[9][5].surface = tileAsphalt;
 
       break;
   }
@@ -368,8 +389,15 @@ function setup() {
   tileAsphaltJ = loadImage("Road_Jump.png");
   tileAsphaltR = loadImage("Road_Turn_Right.png");
   tileAsphaltL = loadImage("Road_Turn_Left.png");
+  tileAsphaltR90 = loadImage("Road_Turn_Right90.png");
   tileDirt = loadImage("Dirt.png");
+  tileDirtR = loadImage("DirtR.png");
   wineBottle = loadImage("Wine_Bottle.png");
+  tileAsphalt180 = loadImage("Road_Straight180.png");
+  tileIceRoad = loadImage("Road_Ice.png");
+  tileAsphaltR270 = loadImage("Road_Turn_Right270.png");
+  tileAsphalt90 = loadImage("Road_Straight90.png");
+  tileAsphaltL270 = loadImage("Road_Turn_270.png");
 
   modifier = new Modifier(5 * tileSize, 5 * tileSize, 50, wineBottle);
 
