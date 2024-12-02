@@ -337,8 +337,8 @@ let tileArray = [
 function level(lvl) {
   switch (lvl) {
     case 1: // Get to the accident
-      tileArray[1][1].surface = tileAsphalt;
-      tileArray[1][2].surface = tileAsphalt;
+      tileArray[3][4].surface = tileAsphalt;
+      tileArray[3][5].surface = tileAsphalt;
       break;
 
     case 2: // Get to the hospital
