@@ -14,15 +14,18 @@ class Modifier {
 }
 
 class Tile {
-  constructor(posX, posY, size, surface, attributes) {
+  constructor(posX, posY, size, surface, angle) {
     this.surface = surface;
     this.size = size;
     this.posX = posX;
     this.posY = posY;
-    this.attributes = attributes;
+    this.angle = angle;
   }
   draw() {
+    
+    rotate(this.angle, [this.posX, this.posY, 0]);
     image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
+    
   }
 }
 // game logic variables
@@ -40,7 +43,8 @@ let maxSpeed = 10;
 let speedCheck = false;
 let speedStore = 0;
 let acc = 0.003;
-let tileSize = 320;
+let tileRotate = 0;
+let tileSize = 30;
 let tileArray = [
   [
     new Tile(),
@@ -342,11 +346,20 @@ function level(lvl) {
       tileArray[3][7].surface = tileAsphaltJ;
       tileArray[3][6].surface = tileAsphalt;
       tileArray[3][5].surface = tileAsphaltR;
-      tileArray[4][5].surface = tileAsphalt90L;
-      break;
-
-    case 2: // Get to the hospital
-      tileArray[1][2].surface = tileAsphalt;
+      tileArray[4][5].angle = 90;
+      tileArray[4][5].angle = 4*tileSize;
+      tileArray[4][5].angle = 3*tileSize;
+      tileArray[4][6].angle = -90;
+      tileArray[4][5].surface = tileAsphalt;
+      tileArray[5][5].surface = tileAsphalt;
+      tileArray[6][5].surface = tileAsphalt;
+      tileArray[7][5].angle = 90;
+      tileArray[7][5].posX = 5*tileSize;
+      tileArray[7][5].posY= -7*tileSize;
+      tileArray[7][6].angle = -90;
+      tileArray[7][5].surface = tileAsphaltR;
+    
+      
       break;
   }
 }
@@ -368,11 +381,7 @@ function setup() {
   tileAsphaltJ = loadImage("Road_Jump.png");
   tileAsphaltR = loadImage("Road_Turn_Right.png");
   tileAsphaltL = loadImage("Road_Turn_Left.png");
-  tileAsphalt90L = loadImage("Road_Straight90R.png");
-  tileAsphalt90R = loadImage("Road_Straight90L.png");
   tileDirt = loadImage("Dirt.png");
-  tileDirtL = loadImage("DirtL.png");
-  tileDirtR = loadImage("DirtR.png");
   wineBottle = loadImage("Wine_Bottle.png");
 
   modifier = new Modifier(5 * tileSize, 5 * tileSize, 50, wineBottle);
@@ -429,7 +438,7 @@ function grid() {
         i * tileSize,
         o * tileSize,
         tileSize,
-        tileDefault
+        tileDefault, tileRotate 
       );
     }
   }
@@ -452,4 +461,5 @@ function draw() {
   }
   pop();
   amb.draw();
+  hud();
 }
