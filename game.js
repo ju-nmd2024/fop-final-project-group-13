@@ -337,8 +337,12 @@ let tileArray = [
 function level(lvl) {
   switch (lvl) {
     case 1: // Get to the accident
-      tileArray[3][4].surface = tileAsphalt;
-      tileArray[3][5].surface = tileAsphalt;
+      tileArray[3][10].surface = tileAsphalt;
+      tileArray[3][9].surface = tileAsphalt;
+      tileArray[3][8].surface = tileAsphalt;
+      tileArray[3][7].surface = tileAsphaltJ;
+      tileArray[3][6].surface = tileAsphalt;
+      tileArray[3][5].surface = tileAsphaltR;
       break;
 
     case 2: // Get to the hospital
@@ -359,7 +363,7 @@ function setup() {
   frameRate(60);
 
   ambulance = loadImage("Ambulance.png");
-  tileDefault = loadImage("Grass_PH.png");
+  tileDefault = loadImage("Grass.png");
   tileAsphalt = loadImage("Road_Straight.png");
   tileAsphaltJ = loadImage("Road_Jump.png");
   tileAsphaltR = loadImage("Road_Turn_Right.png");
