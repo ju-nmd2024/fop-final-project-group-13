@@ -23,7 +23,24 @@ class Tile {
   }
   draw() {
     image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
-    checkPos(this.posX + x, this.posY + y, this.surface);
+    if(checkPos(this.posX + x, this.posY + y, this.surface)){
+      rect(this.posX + x, this.posY + y, tileSize, tileSize);
+      if (this.surface == tileDirt) {
+        maxSpeed = 5;
+        acc = 0.01;
+      } else if (this.surface == tileIceRoad) {
+        maxSpeed = 5;
+        acc = 0.001;
+      } else if (this.surface == tileAsphalt) {
+        maxSpeed = 10;
+        acc = 0.003;
+      } else if (this.surface == tileAsphaltJ) {
+        ambulanceSize = 350;
+      } else {
+        maxSpeed = 4;
+        acc = 0.001;
+      }
+    }
   }
 }
 // game logic variables
@@ -334,31 +351,17 @@ let tileArray = [
     new Tile(),
   ],
 ]; // A nested array that holds the tiles
-let state = "game";
+let state = "mainmenu";
 let lastSecond = 0;
 
 function checkPos(posX, posY, surface) {
   if (
-    a + 500 > posX - tileSize / 2 &&
-    a + 500 < posX + tileSize / 2 &&
-    b + 500 > posY - tileSize / 2 &&
-    b + 500 < posY + tileSize / 2
+    a + 500 > posX - tileSize &&
+    a + 500 < posX &&
+    b + 500 > posY - tileSize&&
+    b + 500 < posY 
   ) {
-    if (surface == tileDirt) {
-      maxSpeed = 5;
-      acc = 0.01;
-    } else if (surface == tileIceRoad) {
-      maxSpeed = 5;
-      acc = 0.001;
-    } else if (surface == tileAsphalt) {
-      maxSpeed = 10;
-      acc = 0.003;
-    } else if (surface == tileAsphaltJ) {
-      ambulanceSize = 350;
-    } else {
-      maxSpeed = 4;
-      acc = 0.001;
-    }
+    return true;
   }
 }
 
