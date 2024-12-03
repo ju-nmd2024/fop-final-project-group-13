@@ -334,7 +334,7 @@ let tileArray = [
     new Tile(),
   ],
 ]; // A nested array that holds the tiles
-let state = "game";
+let state = "mainmenu";
 let lastSecond = 0;
 
 function checkPos(posX, posY, surface) {
@@ -419,10 +419,8 @@ function hud() {
   let currentSecond = Math.floor(millis() / 1000); // Timer ChatGPT
 
   if (currentSecond > lastSecond) {
-    if (timer > 0){
-
-      timer --;
-
+    if (timer > 0) {
+      timer--;
     }
     lastSecond = currentSecond;
   }
@@ -537,31 +535,15 @@ function gameScreen() {
 }
 
 function mainMenu() {
-
-draw(){
-
-
-  
-}
-
+  scale(0.7);
+  image(menuBackground, 750, 500);
 }
 
 function draw() {
   if (state == "game") {
-    background(200);
-    hud();
-    movemap();
-    rotateMap();
-    push();
-    translate(a + 500, b + 500); // change to -100, -100 later
-    rotate(angle, [width / 2, height / 2, 0]);
-    for (let i = 0; i < 16; i++) {
-      for (let o = 0; o < 16; o++) {
-        tileArray[i][o].draw();
-      }
-    }
-    pop();
-    amb.draw();
-    hud();
+    gameScreen();
+  }
+  if (state == "mainmenu") {
+    mainMenu();
   }
 }
