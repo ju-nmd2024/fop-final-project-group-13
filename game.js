@@ -43,7 +43,7 @@ let speedStore = 0;
 let acc = 0.003;
 let timer = 60;
 let tileRotate = 0;
-let tileSize = 30;
+let tileSize = 320;
 let tileArray = [
   [
     new Tile(),
@@ -334,7 +334,7 @@ let tileArray = [
     new Tile(),
   ],
 ]; // A nested array that holds the tiles
-let state = "mainmenu";
+let state = "game";
 let lastSecond = 0;
 
 function checkPos(posX, posY, surface) {
@@ -412,9 +412,16 @@ function level(lvl) {
 }
 
 function hud() {
+  push();
+  noStroke();
+  fill(255, 255, 255, 95);
+  rect(45, 20, 200, 70, 5);
+  pop();
+  textFont("MS Gothic");
   textSize(32);
-  text(`Speed: ${speed.toFixed(1)}`, 50, 50); // Speedometer ChatGPT
-  text(timer, 50, 80);
+  text(`Speed: ${speed.toFixed(2)}`, 50, 50); // Speedometer ChatGPT
+  text("Time:", 50, 86);
+  text(timer, 161, 85);
 
   let currentSecond = Math.floor(millis() / 1000); // Timer ChatGPT
 
@@ -426,7 +433,13 @@ function hud() {
   }
   if (timer == 0) {
     fill(1);
-    text("You did not get there in time!", 50, 110);
+    textSize(48);
+    push();
+    noStroke();
+    fill(255, 255, 255, 95);
+    rect(165, 120, 725, 120, 5);
+    pop();
+    text("You did not get there in time!", 170, 200);
   }
 }
 
@@ -536,11 +549,29 @@ function gameScreen() {
   hud();
 }
 
+function mouseClicked() {
+  if (mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
+    state = "game";
+  }
+}
+
 function mainMenu() {
   scale(0.7);
   image(menuBackground, 750, 500);
   scale(0.5);
   image(menuStart, 350, 450);
+  textSize(48);
+  textFont("MS Gothic");
+  text(
+    "An accident has occured! Get there in time before the patient dies.",
+    650,
+    350
+  );
+  text(
+    "Steer the emergency vehicle with the arrow keys through the course.",
+    650,
+    450
+  );
 }
 
 function draw() {
