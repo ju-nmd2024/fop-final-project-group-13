@@ -23,7 +23,7 @@ class Tile {
   }
   draw() {
     image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
-   checkPos(this.posX + x, this.posY + y, this.surface);
+    checkPos(this.posX + x, this.posY + y, this.surface);
   }
 }
 // game logic variables
@@ -42,7 +42,7 @@ let speedCheck = false;
 let speedStore = 0;
 let acc = 0.003;
 let tileRotate = 0;
-let tileSize = 320;
+let tileSize = 30;
 let tileArray = [
   [
     new Tile(),
@@ -334,13 +334,12 @@ let tileArray = [
   ],
 ]; // A nested array that holds the tiles
 
-function checkPos(posX, posY, surface)
- {
+function checkPos(posX, posY, surface) {
   if (
-    a + 500 > posX - tileSize /2 &&
-    a + 500 < posX + tileSize /2 &&
-    b + 500 > posY - tileSize /2 &&
-    b + 500 < posY + tileSize /2
+    a + 500 > posX - tileSize / 2 &&
+    a + 500 < posX + tileSize / 2 &&
+    b + 500 > posY - tileSize / 2 &&
+    b + 500 < posY + tileSize / 2
   ) {
     if (surface == tileDirt) {
       maxSpeed = 5;
@@ -356,7 +355,7 @@ function checkPos(posX, posY, surface)
     } else {
       maxSpeed = 4;
       acc = 0.001;
-      }
+    }
   }
 }
 
@@ -425,7 +424,7 @@ function setup() {
   tileAsphaltR270 = loadImage("Road_Turn_Right270.png");
   tileAsphalt90 = loadImage("Road_Straight90.png");
   tileAsphaltL270 = loadImage("Road_Turn_270.png");
-
+  tileAccident = loadImage("Accident.png");
   modifier = new Modifier(5 * tileSize, 5 * tileSize, 50, wineBottle);
 
   grid();
