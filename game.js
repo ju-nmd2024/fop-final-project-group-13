@@ -355,7 +355,7 @@ let tileArray = [
     new Tile(),
   ],
 ]; // A nested array that holds the tiles
-let state = "game";
+let state = "mainmenu";
 let lastSecond = 0;
 
 function checkPos(posX, posY, surface) {
