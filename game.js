@@ -356,10 +356,10 @@ let lastSecond = 0;
 
 function checkPos(posX, posY, surface) {
   if (
-    a + 500 > posX - tileSize &&
-    a + 500 < posX &&
-    b + 500 > posY - tileSize&&
-    b + 500 < posY 
+    a + 500 > posX &&
+    a + 500 < posX + tileSize &&
+    b + 500 > posY &&
+    b + 500 < posY + tileSize
   ) {
     return true;
   }
