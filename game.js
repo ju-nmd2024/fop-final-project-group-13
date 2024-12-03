@@ -41,6 +41,7 @@ let maxSpeed = 10;
 let speedCheck = false;
 let speedStore = 0;
 let acc = 0.003;
+let timer = 60;
 let tileRotate = 0;
 let tileSize = 30;
 let tileArray = [
@@ -333,6 +334,8 @@ let tileArray = [
     new Tile(),
   ],
 ]; // A nested array that holds the tiles
+let state = "game";
+let lastSecond = 0;
 
 function checkPos(posX, posY, surface) {
   if (
@@ -393,6 +396,16 @@ function level(lvl) {
       tileArray[9][7].surface = tileAsphalt;
       tileArray[9][6].surface = tileAsphalt;
       tileArray[9][5].surface = tileAsphalt;
+      tileArray[9][4].surface = tileAccident;
+      tileArray[9][3].surface = tileAsphalt;
+      tileArray[9][2].surface = tileAsphalt;
+      tileArray[9][1].surface = tileAsphalt;
+      tileArray[9][0].surface = tileAsphalt;
+      tileArray[3][11].surface = tileAsphalt;
+      tileArray[3][12].surface = tileAsphalt;
+      tileArray[3][13].surface = tileAsphalt;
+      tileArray[3][14].surface = tileAsphalt;
+      tileArray[3][15].surface = tileAsphalt;
 
       break;
   }
@@ -401,6 +414,22 @@ function level(lvl) {
 function hud() {
   textSize(32);
   text(`Speed: ${speed.toFixed(1)}`, 50, 50); // Speedometer ChatGPT
+  text(timer, 50, 80);
+
+  let currentSecond = Math.floor(millis() / 1000); // Timer ChatGPT
+
+  if (currentSecond > lastSecond) {
+    if (timer > 0){
+
+      timer --;
+
+    }
+    lastSecond = currentSecond;
+  }
+  if (timer == 0) {
+    fill(1);
+    text("You did not get there in time!", 50, 110);
+  }
 }
 
 function setup() {
@@ -425,6 +454,7 @@ function setup() {
   tileAsphalt90 = loadImage("Road_Straight90.png");
   tileAsphaltL270 = loadImage("Road_Turn_270.png");
   tileAccident = loadImage("Accident.png");
+  menuBackground = loadImage("MenuBackground.jpg");
   modifier = new Modifier(5 * tileSize, 5 * tileSize, 50, wineBottle);
 
   grid();
@@ -488,7 +518,7 @@ function grid() {
 
 let amb = new Amb();
 
-function draw() {
+function gameScreen() {
   background(200);
   hud();
   movemap();
@@ -504,4 +534,34 @@ function draw() {
   pop();
   amb.draw();
   hud();
+}
+
+function mainMenu() {
+
+draw(){
+
+
+  
+}
+
+}
+
+function draw() {
+  if (state == "game") {
+    background(200);
+    hud();
+    movemap();
+    rotateMap();
+    push();
+    translate(a + 500, b + 500); // change to -100, -100 later
+    rotate(angle, [width / 2, height / 2, 0]);
+    for (let i = 0; i < 16; i++) {
+      for (let o = 0; o < 16; o++) {
+        tileArray[i][o].draw();
+      }
+    }
+    pop();
+    amb.draw();
+    hud();
+  }
 }
