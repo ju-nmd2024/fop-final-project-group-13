@@ -39,16 +39,16 @@ class Tile {
       } else if (this.surface == tileAccident){
 
         state = "win";
+        maxSpeed = 1;
+        acc = 0.0005;
 
-      }
-      
-      else {
-        maxSpeed = 4;
-        acc = 0.001;
+      } else {
+        maxSpeed = 1;
+        acc = 0.0005;
       }
     }
   }
-}
+} 
 // game logic variables
 let y = 0;
 let x = 0;
@@ -592,7 +592,7 @@ function WinScreen(){
   fill(255, 255, 255, 95);
   rect(165, 120, 725, 120, 5);
   pop();
-  text("You are a livesaver!", 170, 200);
+  text("Driver, You are a livesaver!", 170, 200);
 
 }
 function draw() {
