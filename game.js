@@ -453,6 +453,8 @@ function setup() {
   tileAsphaltL270 = loadImage("Road_Turn_270.png");
   tileAccident = loadImage("Accident.png");
   menuBackground = loadImage("MenuBackground.jpg");
+  menuStart = loadImage("StartButton.png");
+  retryButton = loadImage("ReturnButton.png");
   modifier = new Modifier(5 * tileSize, 5 * tileSize, 50, wineBottle);
 
   grid();
@@ -537,6 +539,8 @@ function gameScreen() {
 function mainMenu() {
   scale(0.7);
   image(menuBackground, 750, 500);
+  scale(0.5);
+  image(menuStart, 350, 450);
 }
 
 function draw() {
