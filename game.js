@@ -36,19 +36,17 @@ class Tile {
         acc = 0.003;
       } else if (this.surface == tileAsphaltJ) {
         ambulanceSize = 350;
-      } else if (this.surface == tileAccident){
-
+      } else if (this.surface == tileAccident) {
         state = "win";
         maxSpeed = 1;
         acc = 0.0005;
-
       } else {
         maxSpeed = 1;
         acc = 0.0005;
       }
     }
   }
-} 
+}
 // game logic variables
 let y = 0;
 let x = 0;
@@ -583,8 +581,7 @@ function mainMenu() {
   );
 }
 
-function WinScreen(){
-
+function WinScreen() {
   fill(1);
   textSize(48);
   push();
@@ -593,7 +590,6 @@ function WinScreen(){
   rect(165, 120, 725, 120, 5);
   pop();
   text("Driver, You are a livesaver!", 170, 200);
-
 }
 function draw() {
   if (state == "game") {
@@ -602,9 +598,7 @@ function draw() {
   if (state == "mainmenu") {
     mainMenu();
   }
-  if (state == "win"){
-
+  if (state == "win") {
     WinScreen();
-
   }
 }
