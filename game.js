@@ -23,8 +23,8 @@ class Tile {
   }
   draw() {
     image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
-    if(checkPos(this.posX + x, this.posY + y, this.surface)){
-      rect(this.posX + x, this.posY + y, tileSize, tileSize);
+    if (checkPos(this.posX + x, this.posY + y, this.surface)) {
+      // rect(this.posX + x, this.posY + y, tileSize * 2, tileSize * 2);
       if (this.surface == tileDirt) {
         maxSpeed = 5;
         acc = 0.01;
@@ -36,7 +36,13 @@ class Tile {
         acc = 0.003;
       } else if (this.surface == tileAsphaltJ) {
         ambulanceSize = 350;
-      } else {
+      } else if (this.surface == tileAccident){
+
+        state = "win";
+
+      }
+      
+      else {
         maxSpeed = 4;
         acc = 0.001;
       }
@@ -351,15 +357,15 @@ let tileArray = [
     new Tile(),
   ],
 ]; // A nested array that holds the tiles
-let state = "mainmenu";
+let state = "game";
 let lastSecond = 0;
 
 function checkPos(posX, posY, surface) {
   if (
-    a + 500 > posX &&
-    a + 500 < posX + tileSize &&
-    b + 500 > posY &&
-    b + 500 < posY + tileSize
+    a + 500 > posX + tileSize &&
+    a + 500 < posX + tileSize * 2 &&
+    b + 500 > posY + tileSize &&
+    b + 500 < posY + tileSize * 2
   ) {
     return true;
   }
@@ -577,11 +583,28 @@ function mainMenu() {
   );
 }
 
+function WinScreen(){
+
+  fill(1);
+  textSize(48);
+  push();
+  noStroke();
+  fill(255, 255, 255, 95);
+  rect(165, 120, 725, 120, 5);
+  pop();
+  text("You are a livesaver!", 170, 200);
+
+}
 function draw() {
   if (state == "game") {
     gameScreen();
   }
   if (state == "mainmenu") {
     mainMenu();
+  }
+  if (state == "win"){
+
+    WinScreen();
+
   }
 }
