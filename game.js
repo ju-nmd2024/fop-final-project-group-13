@@ -462,6 +462,7 @@ function hud() {
     rect(165, 120, 725, 120, 5);
     pop();
     text("You did not get there in time!", 170, 200);
+    frameRate(0);
   }
 }
 
@@ -600,6 +601,7 @@ function winScreen() {
   text("Driver, You are a livesaver!", 170, 200);
   scale(0.25);
   image(retryButton, 750, 500);
+  frameRate(0);
 }
 
 function draw() {
