@@ -504,7 +504,7 @@ function movemap() {
   const accRate = acc; 
   const deRate = 0.005; 
   const revRate = acc * 0.5; 
-  const maxReverseSpeed = -3; 
+  const maxRevSpeed = -3; 
 
   
   if (keyIsDown(UP_ARROW)) {
