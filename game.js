@@ -31,17 +31,18 @@ class Tile {
       } else if (this.surface == tileIceRoad) {
         maxSpeed = 5;
         acc = 0.001;
+
       } else if (this.surface == tileAsphalt) {
         maxSpeed = 10;
         acc = 0.003;
       } else if (this.surface == tileAsphaltJ) {
-        ambulanceSize = 350;
+      
       } else if (this.surface == tileAccident) {
         state = "win";
         maxSpeed = 1;
         acc = 0.0005;
       } else {
-        maxSpeed = 1;
+        maxSpeed = 8;
         acc = 0.0005;
       }
     }
@@ -483,22 +484,50 @@ function setup() {
 
 // function that moves the map when pressing ARROW KEYS.
 function movemap() {
+  // if (keyIsDown(UP_ARROW)) {
+  //   if (speedCheck) {
+  //     time = 0;
+  //     speedCheck = false;
+  //   }
+  //   time += deltaTime;
+  //   speed = Math.min(maxSpeed, time * acc);
+  // } else if (keyIsDown(DOWN_ARROW)) {
+  //   speed = Math.min(maxSpeed, time * -acc);
+  // } else {
+  //   speedCheck = false;
+  //   speed = Math.max(0, speed - acc * deltaTime);
+  // }
+
+  // y += cos(angle) * speed;
+  // x += sin(angle) * speed;
+  const accelerationRate = acc; // Rate of speed increase
+  const decelerationRate = 0.005; // Natural slow-down when no key is pressed
+  const reverseRate = acc * 0.5; // Reverse speed is slower than forward acceleration
+  const maxReverseSpeed = -3; // Limit for reverse speed
+
+  // Forward Acceleration
   if (keyIsDown(UP_ARROW)) {
-    if (speedCheck) {
-      time = 0;
-      speedCheck = false;
-    }
+    speed = constrain(speed + accelerationRate * deltaTime, maxReverseSpeed, maxSpeed);
+    speedCheck = true; // Track acceleration state
     time += deltaTime;
-    speed = Math.min(maxSpeed, time * acc);
-  } else if (keyIsDown(DOWN_ARROW)) {
-    speed = Math.min(maxSpeed, time * -acc);
-  } else {
-    speedCheck = false;
-    speed = Math.max(0, speed - acc * deltaTime);
+  }
+  // Reverse Acceleration
+  else if (keyIsDown(DOWN_ARROW)) {
+    speed = constrain(speed - reverseRate * deltaTime, maxReverseSpeed, maxSpeed);
+  }
+  // Deceleration when no key is pressed
+  else {
+    if (speed > 0) {
+      speed = Math.max(0, speed - decelerationRate * deltaTime); // Slow down forward
+    } else if (speed < 0) {
+      speed = Math.min(0, speed + decelerationRate * deltaTime); // Slow down reverse
+    }
   }
 
+  // Apply Speed to Movement
   y += cos(angle) * speed;
   x += sin(angle) * speed;
+
 }
 
 function rotateMap() {
@@ -537,6 +566,7 @@ function grid() {
 }
 
 let amb = new Amb();
+
 
 function gameScreen() {
   background(200);
@@ -582,7 +612,7 @@ function mainMenu() {
 }
 
 function WinScreen() {
-  fill(1);
+  fill(0);
   textSize(48);
   push();
   noStroke();
@@ -590,7 +620,10 @@ function WinScreen() {
   rect(165, 120, 725, 120, 5);
   pop();
   text("Driver, You are a livesaver!", 170, 200);
+  scale(0.25);
+  image(retryButton, 750, 500);
 }
+
 function draw() {
   if (state == "game") {
     gameScreen();
