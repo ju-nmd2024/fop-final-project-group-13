@@ -1,3 +1,4 @@
+// Classes for game objects
 class Amb {
   constructor() {}
   draw() {
@@ -58,7 +59,8 @@ class Tile {
     }
   }
 }
-// game logic variables
+
+// Game logic variables
 let y = 0;
 let x = 0;
 let a = x;
@@ -76,6 +78,10 @@ let acc = 0.003;
 let timer = 60;
 let tileRotate = 0;
 let tileSize = 320;
+let state = "mainmenu";
+let lastSecond = 0;
+let amb = new Amb();
+
 let tileArray = [
   [
     new Tile(),
@@ -365,11 +371,9 @@ let tileArray = [
     new Tile(),
     new Tile(),
   ],
-]; // A nested array that holds the tiles
-let state = "mainmenu";
-let lastSecond = 0;
-let amb = new Amb();
+];
 
+// Function for tile detection
 function checkPos(posX, posY, surface) {
   if (
     a + 500 > posX + tileSize &&
@@ -430,6 +434,7 @@ function level(lvl) {
   }
 }
 
+// Function that draws the heads up display
 function hud() {
   push();
   noStroke();
@@ -462,6 +467,7 @@ function hud() {
   }
 }
 
+
 function setup() {
   createCanvas(1000, 1000);
   angleMode(DEGREES); //set the angle mode to degrees.
@@ -493,49 +499,33 @@ function setup() {
   level(1);
 }
 
-// function that moves the map when pressing ARROW KEYS.
+// Functions that moves the map with arrow keys
 function movemap() {
-  // if (keyIsDown(UP_ARROW)) {
-  //   if (speedCheck) {
-  //     time = 0;
-  //     speedCheck = false;
-  //   }
-  //   time += deltaTime;
-  //   speed = Math.min(maxSpeed, time * acc);
-  // } else if (keyIsDown(DOWN_ARROW)) {
-  //   speed = Math.min(maxSpeed, time * -acc);
-  // } else {
-  //   speedCheck = false;
-  //   speed = Math.max(0, speed - acc * deltaTime);
-  // }
+  const accRate = acc; 
+  const deRate = 0.005; 
+  const revRate = acc * 0.5; 
+  const maxReverseSpeed = -3; 
 
-  // y += cos(angle) * speed;
-  // x += sin(angle) * speed;
-  const accelerationRate = acc; // Rate of speed increase
-  const decelerationRate = 0.005; // Natural slow-down when no key is pressed
-  const reverseRate = acc * 0.5; // Reverse speed is slower than forward acceleration
-  const maxReverseSpeed = -3; // Limit for reverse speed
-
-  // Forward Acceleration
+  
   if (keyIsDown(UP_ARROW)) {
-    speed = constrain(speed + accelerationRate * deltaTime, maxReverseSpeed, maxSpeed);
-    speedCheck = true; // Track acceleration state
+    speed = constrain(speed + accRate * deltaTime, maxRevSpeed, maxSpeed);
+    speedCheck = true; 
     time += deltaTime;
   }
-  // Reverse Acceleration
+  
   else if (keyIsDown(DOWN_ARROW)) {
-    speed = constrain(speed - reverseRate * deltaTime, maxReverseSpeed, maxSpeed);
+    speed = constrain(speed - revRate * deltaTime, maxRevSpeed, maxSpeed);
   }
-  // Deceleration when no key is pressed
+  
   else {
     if (speed > 0) {
-      speed = Math.max(0, speed - decelerationRate * deltaTime); // Slow down forward
+      speed = Math.max(0, speed - deRate * deltaTime); // Slow down forward
     } else if (speed < 0) {
-      speed = Math.min(0, speed + decelerationRate * deltaTime); // Slow down reverse
+      speed = Math.min(0, speed + deRate * deltaTime); // Slow down reverse
     }
   }
 
-  // Apply Speed to Movement
+  
   y += cos(angle) * speed;
   x += sin(angle) * speed;
 
@@ -550,7 +540,7 @@ function rotateMap() {
   }
 }
 
-// Grid system
+// Grid function
 function grid() {
   for (let i = 0; i < 16; i++) {
     for (let o = 0; o < 16; o++) {
@@ -565,6 +555,7 @@ function grid() {
   }
 }
 
+// Functions for screens
 function gameScreen() {
   background(200);
   hud();
