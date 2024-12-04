@@ -1,3 +1,13 @@
+class Amb {
+  constructor() {}
+  draw() {
+    push();
+    scale(1);
+    image(ambulance, a + 500, b + 500, ambulanceSize, ambulanceSize);
+    pop();
+  }
+}
+
 class Modifier {
   constructor(posX, posY, size, surface) {
     this.surface = surface;
@@ -358,6 +368,7 @@ let tileArray = [
 ]; // A nested array that holds the tiles
 let state = "mainmenu";
 let lastSecond = 0;
+let amb = new Amb();
 
 function checkPos(posX, posY, surface) {
   if (
@@ -539,17 +550,6 @@ function rotateMap() {
   }
 }
 
-// function that draws the ambulance
-class Amb {
-  constructor() {}
-  draw() {
-    push();
-    scale(1);
-    image(ambulance, a + 500, b + 500, ambulanceSize, ambulanceSize);
-    pop();
-  }
-}
-
 // Grid system
 function grid() {
   for (let i = 0; i < 16; i++) {
@@ -564,9 +564,6 @@ function grid() {
     }
   }
 }
-
-let amb = new Amb();
-
 
 function gameScreen() {
   background(200);
@@ -611,7 +608,7 @@ function mainMenu() {
   );
 }
 
-function WinScreen() {
+function winScreen() {
   fill(0);
   textSize(48);
   push();
@@ -632,6 +629,6 @@ function draw() {
     mainMenu();
   }
   if (state == "win") {
-    WinScreen();
+    winScreen();
   }
 }
