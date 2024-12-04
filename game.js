@@ -36,18 +36,16 @@ class Tile {
     image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
     if (checkPos(this.posX + x, this.posY + y, this.surface)) {
       // rect(this.posX + x, this.posY + y, tileSize * 2, tileSize * 2);
-      if (this.surface == tileDirt) {
+      if (this.surface == tileDirt || this.surface == tileDirtR) {
         maxSpeed = 5;
-        acc = 0.01;
+        acc = 0.35;
       } else if (this.surface == tileIceRoad) {
-        maxSpeed = 5;
-        acc = 0.001;
-
-      } else if (this.surface == tileAsphalt) {
+        maxSpeed = 7;
+        acc = 0.5;
+      } else if (this.surface == tileAsphalt || this.surface == tileAsphaltR) {
         maxSpeed = 10;
         acc = 0.003;
       } else if (this.surface == tileAsphaltJ) {
-      
       } else if (this.surface == tileAccident) {
         state = "win";
         maxSpeed = 1;
@@ -467,7 +465,6 @@ function hud() {
   }
 }
 
-
 function setup() {
   createCanvas(1000, 1000);
   angleMode(DEGREES); //set the angle mode to degrees.
@@ -501,23 +498,18 @@ function setup() {
 
 // Functions that moves the map with arrow keys
 function movemap() {
-  const accRate = acc; 
-  const deRate = 0.005; 
-  const revRate = acc * 0.5; 
-  const maxRevSpeed = -3; 
+  const accRate = acc;
+  const deRate = 0.005;
+  const revRate = acc * 0.5;
+  const maxRevSpeed = -3;
 
-  
   if (keyIsDown(UP_ARROW)) {
     speed = constrain(speed + accRate * deltaTime, maxRevSpeed, maxSpeed);
-    speedCheck = true; 
+    speedCheck = true;
     time += deltaTime;
-  }
-  
-  else if (keyIsDown(DOWN_ARROW)) {
+  } else if (keyIsDown(DOWN_ARROW)) {
     speed = constrain(speed - revRate * deltaTime, maxRevSpeed, maxSpeed);
-  }
-  
-  else {
+  } else {
     if (speed > 0) {
       speed = Math.max(0, speed - deRate * deltaTime); // Slow down forward
     } else if (speed < 0) {
@@ -525,10 +517,8 @@ function movemap() {
     }
   }
 
-  
   y += cos(angle) * speed;
   x += sin(angle) * speed;
-
 }
 
 function rotateMap() {
