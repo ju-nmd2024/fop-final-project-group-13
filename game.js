@@ -89,7 +89,7 @@ let time = 0;
 let speed = 0;
 let maxSpeed = 10;
 let acc = 0.003;
-let timer = 60;
+let timer = 120;
 let tileRotate = 0;
 let tileSize = 320;
 let state = "mainmenu";
@@ -682,7 +682,7 @@ function resetGame() {
   b = y;
   angle = 0;
   speed = 0;
-  timer = 60;
+  timer = 120;
   grid();
   level(1);
 }
