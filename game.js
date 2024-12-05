@@ -58,7 +58,8 @@ class Tile {
         this.surface == tileCrossroadUpp ||
         this.surface == tileRoadTurnL180 ||
         this.surface == tileAsphalt90 ||
-        this.surface == tileAsphaltR180
+        this.surface == tileAsphaltR180 ||
+        this.surface == tileAsphaltTurn
       ) {
         maxSpeed = 10;
         acc = 0.003;
