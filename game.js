@@ -42,7 +42,18 @@ class Tile {
       } else if (this.surface == tileIceRoad) {
         maxSpeed = 7;
         acc = 0.5;
-      } else if (this.surface == tileAsphalt || this.surface == tileAsphaltR ||this.surface == tileAsphalt180 || this.surface == tileAsphaltL || this.surface == tileAsphaltL270 || this.surface == tileAsphaltR270 || this.surface == tileAsphaltR90 || this.surface == tilePark || this.surface == tilePark90 || this.surface == tileParkBlank) {
+      } else if (
+        this.surface == tileAsphalt ||
+        this.surface == tileAsphaltR ||
+        this.surface == tileAsphalt180 ||
+        this.surface == tileAsphaltL ||
+        this.surface == tileAsphaltL270 ||
+        this.surface == tileAsphaltR270 ||
+        this.surface == tileAsphaltR90 ||
+        this.surface == tilePark ||
+        this.surface == tilePark90 ||
+        this.surface == tileParkBlank
+      ) {
         maxSpeed = 10;
         acc = 0.003;
       } else if (this.surface == tileAsphaltJ) {
@@ -393,23 +404,52 @@ function level(lvl) {
       tileArray[1][0].surface = tilePark;
       tileArray[1][1].surface = tileParkBlank;
       tileArray[1][2].surface = tilePark90;
-      tileArray[2][0].surface = tilePark;
+      tileArray[2][0].surface = tilePark; 
       tileArray[2][1].surface = tileParkBlank;
       tileArray[2][2].surface = tilePark90;
       tileArray[3][0].surface = tilePark;
       tileArray[3][1].surface = tileParkBlank;
       tileArray[3][2].surface = tilePark90;
-      tileArray[3][10].surface = tileAsphalt;
+      tileArray[4][1].surface = tileAsphalt90;
+      tileArray[5][1].surface = tileAsphalt90;
+      tileArray[6][1].surface = tileAsphaltR90;
+      tileArray[6][2].surface = tileAsphalt;
+      tileArray[6][3].surface = tileAsphalt;
+      tileArray[6][4].surface = tileAsphaltR180;
+      tileArray[5][4].surface = tileAsphalt90;
+      tileArray[4][4].surface = tileIceRoad;
+      tileArray[3][4].surface = tileIceRoad;
+      tileArray[2][4].surface = tileIceRoad;
+      tileArray[1][4].surface = tileIceRoad;
+      tileArray[1][5].surface = tileIceRoad;
+      tileArray[1][6].surface = tileIceRoad;
+      tileArray[1][7].surface = tileAsphalt180;
+      tileArray[1][8].surface = tileAsphalt180;
+      tileArray[1][9].surface = tileAsphalt180;
+      tileArray[2][10].surface = tileCrossroad;
+      tileArray[3][10].surface = tileParkBlank;
+      tileArray[1][10].surface = tileAsphaltTurn;
+      tileArray[14][6].surface = tileAsphalt;
+      tileArray[14][5].surface = tileAsphalt;
+      tileArray[14][4].surface = tileAsphalt;
+      tileArray[14][3].surface = tileAsphaltL;
+      tileArray[13][3].surface = tileAsphalt90;
+      tileArray[12][3].surface = tileAsphalt90;
+      tileArray[11][3].surface = tileAsphalt90;
+      tileArray[10][3].surface = tileCrossroadL;
+
+
+
       tileArray[3][9].surface = tileAsphalt;
       tileArray[3][8].surface = tileAsphalt;
-      tileArray[3][7].surface = tileAsphaltJ;
+      tileArray[3][7].surface = tileAsphalt;
       tileArray[3][6].surface = tileAsphalt;
-      tileArray[3][5].surface = tileAsphaltR;
-      tileArray[4][5].surface = tileDirtR;
-      tileArray[5][5].surface = tileDirtR;
-      tileArray[6][5].surface = tileDirtR;
-      tileArray[7][5].surface = tileAsphaltR90;
-      tileArray[7][6].surface = tileAsphalt180;
+      tileArray[3][6].surface = tileAsphalt;
+      tileArray[3][6].surface = tileAsphaltR;
+      tileArray[4][6].surface = tileDirtR;
+      tileArray[5][6].surface = tileDirtR;
+      tileArray[6][6].surface = tileDirtR;
+      tileArray[7][6].surface = tileAsphaltR90;
       tileArray[7][7].surface = tileAsphalt180;
       tileArray[7][8].surface = tileDirt;
       tileArray[7][9].surface = tileDirt;
@@ -423,14 +463,20 @@ function level(lvl) {
       tileArray[10][10].surface = tileAsphalt90;
       tileArray[11][10].surface = tileAsphaltL270;
       tileArray[11][9].surface = tileAsphalt;
-      tileArray[11][8].surface = tileAsphaltL;
-      tileArray[10][8].surface = tileAsphalt90;
-      tileArray[9][8].surface = tileAsphaltR270;
-      tileArray[9][7].surface = tileAsphalt;
+      tileArray[11][8].surface = tileCrossroadUpp;
+      tileArray[11][7].surface = tileParkBlank;
+      tileArray[10][7].surface = tileAsphalt90;
+
+      tileArray[12][7].surface = tileAsphalt90;
+      tileArray[13][7].surface = tileAsphalt90;
+      tileArray[14][7].surface = tileAsphaltL270;
+      tileArray[9][7].surface = tileRoadTurnL180;
       tileArray[9][6].surface = tileAsphalt;
+
+
       tileArray[9][5].surface = tileAsphalt;
       tileArray[9][4].surface = tileAccident;
-      tileArray[9][3].surface = tileAsphalt;
+      tileArray[9][3].surface = tileParkBlank;
       tileArray[9][2].surface = tileAsphalt;
       tileArray[9][1].surface = tileAsphalt;
       tileArray[9][0].surface = tileAsphalt;
@@ -491,6 +537,7 @@ function setup() {
   tileAsphaltR = loadImage("Road_Turn_Right.png");
   tileAsphaltL = loadImage("Road_Turn_Left.png");
   tileAsphaltR90 = loadImage("Road_Turn_Right90.png");
+  tileRoadTurnL180 = loadImage("Road_Turn_L180.png");
   tileDirt = loadImage("Dirt.png");
   tileDirtR = loadImage("DirtR.png");
   wineBottle = loadImage("Wine_Bottle.png");
@@ -499,7 +546,13 @@ function setup() {
   tileAsphaltR270 = loadImage("Road_Turn_Right270.png");
   tileAsphalt90 = loadImage("Road_Straight90.png");
   tileAsphaltL270 = loadImage("Road_Turn_270.png");
+  tileAsphaltR180 = loadImage("Road_Turn_R180.png");
+  tileAsphaltTurn = loadImage("Road_Turn_Left90.png");
   tileAccident = loadImage("Accident.png");
+  tileCrossroad = loadImage("Cross_Road.png");
+  tileCrossroadUpp = loadImage("Cross_RoadUppt.png");
+  tileCrossroadL = loadImage("Cross_RoadL.png");
+
   tilePark = loadImage("Road_Park.png");
   tilePark90 = loadImage("Road_Park90.png");
   tileParkBlank = loadImage("Road_ParkBlank.png");
@@ -547,6 +600,7 @@ function rotateMap() {
 }
 
 // Grid function
+// The following 12 lines was created by the help of Benjamin's brother
 function grid() {
   for (let i = 0; i < 16; i++) {
     for (let o = 0; o < 16; o++) {
@@ -580,6 +634,7 @@ function gameScreen() {
   hud();
 }
 
+// 
 function mouseClicked() {
   if (mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
     state = "game";
