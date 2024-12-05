@@ -84,7 +84,7 @@ let maxSpeed = 10;
 let speedCheck = false;
 let speedStore = 0;
 let acc = 0.003;
-let timer = 60;
+let timer = 120;
 let tileRotate = 0;
 let tileSize = 320;
 let state = "mainmenu";
@@ -404,7 +404,7 @@ function level(lvl) {
       tileArray[1][0].surface = tilePark;
       tileArray[1][1].surface = tileParkBlank;
       tileArray[1][2].surface = tilePark90;
-      tileArray[2][0].surface = tilePark; 
+      tileArray[2][0].surface = tilePark;
       tileArray[2][1].surface = tileParkBlank;
       tileArray[2][2].surface = tilePark90;
       tileArray[3][0].surface = tilePark;
@@ -438,8 +438,6 @@ function level(lvl) {
       tileArray[11][3].surface = tileAsphalt90;
       tileArray[10][3].surface = tileCrossroadL;
 
-
-
       tileArray[3][9].surface = tileAsphalt;
       tileArray[3][8].surface = tileAsphalt;
       tileArray[3][7].surface = tileAsphalt;
@@ -472,7 +470,6 @@ function level(lvl) {
       tileArray[14][7].surface = tileAsphaltL270;
       tileArray[9][7].surface = tileRoadTurnL180;
       tileArray[9][6].surface = tileAsphalt;
-
 
       tileArray[9][5].surface = tileAsphalt;
       tileArray[9][4].surface = tileAccident;
@@ -634,7 +631,7 @@ function gameScreen() {
   hud();
 }
 
-// 
+//
 function mouseClicked() {
   if (mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
     state = "game";
