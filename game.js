@@ -42,7 +42,7 @@ class Tile {
       } else if (this.surface == tileIceRoad) {
         maxSpeed = 7;
         acc = 0.5;
-      } else if (this.surface == tileAsphalt || this.surface == tileAsphaltR) {
+      } else if (this.surface == tileAsphalt || this.surface == tileAsphaltR ||this.surface == tileAsphalt180 || this.surface == tileAsphaltL || this.surface == tileAsphaltL270 || this.surface == tileAsphaltR270 || this.surface == tileAsphaltR90 || this.surface == tilePark || this.surface == tilePark90 || this.surface == tileParkBlank) {
         maxSpeed = 10;
         acc = 0.003;
       } else if (this.surface == tileAsphaltJ) {
@@ -387,6 +387,18 @@ function checkPos(posX, posY, surface) {
 function level(lvl) {
   switch (lvl) {
     case 1: // Get to the accident
+      tileArray[0][0].surface = tilePark;
+      tileArray[0][1].surface = tileParkBlank;
+      tileArray[0][2].surface = tilePark90;
+      tileArray[1][0].surface = tilePark;
+      tileArray[1][1].surface = tileParkBlank;
+      tileArray[1][2].surface = tilePark90;
+      tileArray[2][0].surface = tilePark;
+      tileArray[2][1].surface = tileParkBlank;
+      tileArray[2][2].surface = tilePark90;
+      tileArray[3][0].surface = tilePark;
+      tileArray[3][1].surface = tileParkBlank;
+      tileArray[3][2].surface = tilePark90;
       tileArray[3][10].surface = tileAsphalt;
       tileArray[3][9].surface = tileAsphalt;
       tileArray[3][8].surface = tileAsphalt;
@@ -488,6 +500,9 @@ function setup() {
   tileAsphalt90 = loadImage("Road_Straight90.png");
   tileAsphaltL270 = loadImage("Road_Turn_270.png");
   tileAccident = loadImage("Accident.png");
+  tilePark = loadImage("Road_Park.png");
+  tilePark90 = loadImage("Road_Park90.png");
+  tileParkBlank = loadImage("Road_ParkBlank.png");
   menuBackground = loadImage("MenuBackground.jpg");
   menuStart = loadImage("StartButton.png");
   retryButton = loadImage("ReturnButton.png");
