@@ -1,3 +1,26 @@
+// Game logic variables
+let y = 0;
+let x = 0;
+let a = x;
+let b = y;
+let angle = 0;
+let ambulance;
+let ambulanceSize = 300;
+let gameMap;
+let time = 0;
+let speed = 0;
+let maxSpeed = 10;
+let speedCheck = false;
+let speedStore = 0;
+let acc = 0.003;
+let timer = 120;
+let tileRotate = 0;
+let tileSize = 320;
+let state = "mainmenu";
+let lastSecond = 0;
+let amb = new Amb();
+
+
 // Classes for game objects
 class Amb {
   constructor() {}
@@ -8,6 +31,7 @@ class Amb {
     pop();
   }
 }
+
 
 class Modifier {
   constructor(posX, posY, size, surface) {
@@ -69,317 +93,26 @@ class Tile {
   }
 }
 
-// Game logic variables
-let y = 0;
-let x = 0;
-let a = x;
-let b = y;
-let angle = 0;
-let ambulance;
-let ambulanceSize = 300;
-let gameMap;
-let time = 0;
-let speed = 0;
-let maxSpeed = 10;
-let speedCheck = false;
-let speedStore = 0;
-let acc = 0.003;
-let timer = 120;
-let tileRotate = 0;
-let tileSize = 320;
-let state = "mainmenu";
-let lastSecond = 0;
-let amb = new Amb();
 
+
+// Tile array, 16x16 tiles
 let tileArray = [
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
-  [
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-    new Tile(),
-  ],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
+  [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
 ];
 
 // Function for tile detection
@@ -394,7 +127,7 @@ function checkPos(posX, posY, surface) {
   }
 }
 
-// Function to place the tiles
+// Function to place the tiles of the map
 function level(lvl) {
   switch (lvl) {
     case 1: // Get to the accident
@@ -437,7 +170,6 @@ function level(lvl) {
       tileArray[12][3].surface = tileAsphalt90;
       tileArray[11][3].surface = tileAsphalt90;
       tileArray[10][3].surface = tileCrossroadL;
-
       tileArray[3][9].surface = tileAsphalt;
       tileArray[3][8].surface = tileAsphalt;
       tileArray[3][7].surface = tileAsphalt;
@@ -464,13 +196,11 @@ function level(lvl) {
       tileArray[11][8].surface = tileCrossroadUpp;
       tileArray[11][7].surface = tileParkBlank;
       tileArray[10][7].surface = tileAsphalt90;
-
       tileArray[12][7].surface = tileAsphalt90;
       tileArray[13][7].surface = tileAsphalt90;
       tileArray[14][7].surface = tileAsphaltL270;
       tileArray[9][7].surface = tileRoadTurnL180;
       tileArray[9][6].surface = tileAsphalt;
-
       tileArray[9][5].surface = tileAsphalt;
       tileArray[9][4].surface = tileAccident;
       tileArray[9][3].surface = tileParkBlank;
@@ -482,7 +212,6 @@ function level(lvl) {
       tileArray[3][13].surface = tileAsphalt;
       tileArray[3][14].surface = tileAsphalt;
       tileArray[3][15].surface = tileAsphalt;
-
       break;
   }
 }
