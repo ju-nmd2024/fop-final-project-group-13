@@ -44,11 +44,33 @@ class Tile {
       } else if (this.surface == tileIceRoad) {
         maxSpeed = 7;
         acc = 0.5;
+<<<<<<< HEAD
       } else if (this.surface == tileDefault) {
         maxSpeed = 2;
         acc = 0.5;
       }
       } else if (this.surface == tileAsphalt || this.surface == tileAsphaltR || this.surface == tileAsphalt180 || this.surface == tileAsphaltL || this.surface == tileAsphaltL270 || this.surface == tileAsphaltR270 || this.surface == tileAsphaltR90 || this.surface == tilePark || this.surface == tilePark90 || this.surface == tileParkBlank) {
+=======
+      } else if (
+        this.surface == tileAsphalt ||
+        this.surface == tileAsphaltR ||
+        this.surface == tileAsphalt180 ||
+        this.surface == tileAsphaltL ||
+        this.surface == tileAsphaltL270 ||
+        this.surface == tileAsphaltR270 ||
+        this.surface == tileAsphaltR90 ||
+        this.surface == tilePark ||
+        this.surface == tilePark90 ||
+        this.surface == tileParkBlank ||
+        this.surface == tileCrossroad ||
+        this.surface == tileCrossroadL ||
+        this.surface == tileCrossroadUpp ||
+        this.surface == tileRoadTurnL180 ||
+        this.surface == tileAsphalt90 ||
+        this.surface == tileAsphaltR180 ||
+        this.surface == tileAsphaltTurn
+      ) {
+>>>>>>> 1006e4e87108f42944923fe1d20895d383ac68af
         maxSpeed = 10;
         acc = 0.003;
       } else if (this.surface == tileAsphaltJ) {
@@ -57,13 +79,35 @@ class Tile {
         maxSpeed = 1;
         acc = 0.0005;
       } else {
-        maxSpeed = 8;
+        maxSpeed = 0.1;
         acc = 0.0005;
       }
     }
   }
 }
 
+<<<<<<< HEAD
+=======
+// Game logic variables
+let y = 0;
+let x = 0;
+let a = x;
+let b = y;
+let angle = 0;
+let ambulance;
+let ambulanceSize = 300;
+let gameMap;
+let time = 0;
+let speed = 0;
+let maxSpeed = 10;
+let acc = 0.003;
+let timer = 120;
+let tileRotate = 0;
+let tileSize = 320;
+let state = "mainmenu";
+let lastSecond = 0;
+let amb = new Amb();
+>>>>>>> 1006e4e87108f42944923fe1d20895d383ac68af
 
 // Tile array, 16x16 tiles
 let tileArray = [
@@ -119,7 +163,7 @@ function level(lvl) {
       tileArray[6][2].surface = tileAsphalt;
       tileArray[6][3].surface = tileAsphalt;
       tileArray[6][4].surface = tileAsphaltR180;
-      tileArray[5][4].surface = tileAsphalt90;
+      tileArray[5][4].surface = tileIceRoad;
       tileArray[4][4].surface = tileIceRoad;
       tileArray[3][4].surface = tileIceRoad;
       tileArray[2][4].surface = tileIceRoad;
@@ -195,11 +239,12 @@ function hud() {
   pop();
   textFont("MS Gothic");
   textSize(32);
-  text(`Speed: ${speed.toFixed(2)}`, 50, 50); // Speedometer ChatGPT
+  text(`Speed: ${speed.toFixed(2)}`, 50, 50);
   text("Time:", 50, 86);
   text(timer, 161, 85);
+  let timeOver = false;
 
-  let currentSecond = Math.floor(millis() / 1000); // Timer ChatGPT
+  let currentSecond = Math.floor(millis() / 1000); // Timer ChatGPT: https://chatgpt.com/c/674ed43a-e114-8006-aee1-2fc85f972fea
 
   if (currentSecond > lastSecond) {
     if (timer > 0) {
@@ -208,15 +253,8 @@ function hud() {
     lastSecond = currentSecond;
   }
   if (timer == 0) {
-    fill(1);
-    textSize(48);
-    push();
-    noStroke();
-    fill(255, 255, 255, 95);
-    rect(165, 120, 725, 120, 5);
-    pop();
-    text("You did not get there in time!", 170, 200);
-    frameRate(0);
+    resetGame();
+    frameRate(60);
   }
 }
 
@@ -353,14 +391,24 @@ function gameScreen() {
   hud();
 }
 
+<<<<<<< HEAD
 //function for start button
+=======
+>>>>>>> 1006e4e87108f42944923fe1d20895d383ac68af
 function mouseClicked() {
   if (mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
     state = "game";
+  } else if (mouseX >= 25 && mouseX <= 140 && mouseY >= 195 && mouseY <= 285) {
+    state = "mainmenu";
+    resetGame();
   }
 }
 // function that created the start screen (main menu)
 function mainMenu() {
+  push();
+  fill(0);
+  rect(0, 0, 1000, 1000);
+  pop();
   scale(0.7);
   image(menuBackground, 750, 500);
   scale(0.5);
@@ -373,16 +421,28 @@ function mainMenu() {
 
 function winScreen() {
   fill(0);
+  resetGame();
   textSize(48);
   push();
-  noStroke();
   fill(255, 255, 255, 95);
   rect(165, 120, 725, 120, 5);
   pop();
   text("Driver, You are a livesaver!", 170, 200);
   scale(0.25);
-  image(retryButton, 750, 500);
-  frameRate(0);
+  image(retryButton, 300, 750);
+  frameRate(60);
+}
+
+function resetGame() {
+  y = 0;
+  x = 0;
+  a = x;
+  b = y;
+  angle = 0;
+  speed = 0;
+  timer = 120;
+  grid();
+  level(1);
 }
 
 //draws the gamestates for starting the game, playing and win.
