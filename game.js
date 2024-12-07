@@ -1,25 +1,3 @@
-// Game logic variables
-let y = 0;
-let x = 0;
-let a = x;
-let b = y;
-let angle = 0;
-let ambulance;
-let ambulanceSize = 300;
-let gameMap;
-let time = 0;
-let speed = 0;
-let maxSpeed = 10;
-let speedCheck = false;
-let speedStore = 0;
-let acc = 0.003;
-let timer = 120;
-let tileRotate = 0;
-let tileSize = 320;
-let state = "mainmenu";
-let lastSecond = 0;
-let amb = new Amb();
-
 
 // Classes for game objects
 class Amb {
@@ -66,18 +44,11 @@ class Tile {
       } else if (this.surface == tileIceRoad) {
         maxSpeed = 7;
         acc = 0.5;
-      } else if (
-        this.surface == tileAsphalt ||
-        this.surface == tileAsphaltR ||
-        this.surface == tileAsphalt180 ||
-        this.surface == tileAsphaltL ||
-        this.surface == tileAsphaltL270 ||
-        this.surface == tileAsphaltR270 ||
-        this.surface == tileAsphaltR90 ||
-        this.surface == tilePark ||
-        this.surface == tilePark90 ||
-        this.surface == tileParkBlank
-      ) {
+      } else if (this.surface == tileDefault) {
+        maxSpeed = 2;
+        acc = 0.5;
+      }
+      } else if (this.surface == tileAsphalt || this.surface == tileAsphaltR || this.surface == tileAsphalt180 || this.surface == tileAsphaltL || this.surface == tileAsphaltL270 || this.surface == tileAsphaltR270 || this.surface == tileAsphaltR90 || this.surface == tilePark || this.surface == tilePark90 || this.surface == tileParkBlank) {
         maxSpeed = 10;
         acc = 0.003;
       } else if (this.surface == tileAsphaltJ) {
@@ -92,7 +63,6 @@ class Tile {
     }
   }
 }
-
 
 
 // Tile array, 16x16 tiles
@@ -250,12 +220,36 @@ function hud() {
   }
 }
 
+// Game logic variables
+// They are put here because "Amb" can not be declared in class before use
+let y = 0;
+let x = 0;
+let a = x;
+let b = y;
+let angle = 0;
+let ambulance;
+let ambulanceSize = 300;
+let gameMap;
+let time = 0;
+let speed = 0;
+let maxSpeed = 10;
+let speedCheck = false;
+let speedStore = 0;
+let acc = 0.003;
+let timer = 120;
+let tileRotate = 0;
+let tileSize = 320;
+let state = "mainmenu";
+let lastSecond = 0;
+let amb = new Amb();
+
 function setup() {
   createCanvas(1000, 1000);
   angleMode(DEGREES); //set the angle mode to degrees.
   imageMode(CENTER); //Images drawn with their center as the origin
   frameRate(60);
 
+  //loads the images
   ambulance = loadImage("Ambulance.png");
   tileDefault = loadImage("Grass.png");
   tileAsphalt = loadImage("Road_Straight.png");
@@ -278,7 +272,6 @@ function setup() {
   tileCrossroad = loadImage("Cross_Road.png");
   tileCrossroadUpp = loadImage("Cross_RoadUppt.png");
   tileCrossroadL = loadImage("Cross_RoadL.png");
-
   tilePark = loadImage("Road_Park.png");
   tilePark90 = loadImage("Road_Park90.png");
   tileParkBlank = loadImage("Road_ParkBlank.png");
@@ -360,13 +353,13 @@ function gameScreen() {
   hud();
 }
 
-//
+//function for start button
 function mouseClicked() {
   if (mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
     state = "game";
   }
 }
-
+// function that created the start screen (main menu)
 function mainMenu() {
   scale(0.7);
   image(menuBackground, 750, 500);
@@ -374,16 +367,8 @@ function mainMenu() {
   image(menuStart, 350, 450);
   textSize(48);
   textFont("MS Gothic");
-  text(
-    "An accident has occured! Get there in time before the patient dies.",
-    650,
-    350
-  );
-  text(
-    "Steer the emergency vehicle with the arrow keys through the course.",
-    650,
-    450
-  );
+  text("An accident has occured! Get there in time before the patient dies.", 650, 350);
+  text("Steer the emergency vehicle with the arrow keys through the course.", 650, 450);
 }
 
 function winScreen() {
@@ -400,6 +385,7 @@ function winScreen() {
   frameRate(0);
 }
 
+//draws the gamestates for starting the game, playing and win.
 function draw() {
   if (state == "game") {
     gameScreen();
