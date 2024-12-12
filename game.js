@@ -1,4 +1,4 @@
-
+//Class is a 
 // Classes for game objects
 class Amb {
   constructor() {}
@@ -10,6 +10,15 @@ class Amb {
   }
 }
 
+class Broken1Amb {
+  constructor() {}
+  draw() {
+    push();
+    scale(1);
+    image(brokenAbmulance, a + 500, b + 500, ambulanceSize, ambulanceSize);
+    pop();
+  }
+}
 
 class Modifier {
   constructor(posX, posY, size, surface) {
@@ -61,7 +70,7 @@ class Tile {
 }
 
 
-// Tile array, 16x16 tiles
+// Tile array, 16x16 tiles, creates the map
 let tileArray = [
   [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
   [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
@@ -238,6 +247,8 @@ let tileSize = 320;
 let state = "mainmenu";
 let lastSecond = 0;
 let amb = new Amb();
+let Broken1Ambamb = new Broken1AmbAmb();
+
 
 function setup() {
   createCanvas(1000, 1000);
@@ -247,6 +258,10 @@ function setup() {
 
   //loads the images
   ambulance = loadImage("Ambulance.png");
+  brokenAbmulance = loadImage("Stage 1 broken ambulance.png");
+  broken2Abmulance = loadImage("Stage 2 broken ambulance.png");
+  broken3Abmulance = loadImage("Broken ambulance.png");
+  rock = loadImage("rock.png");
   tileDefault = loadImage("Grass.png");
   tileAsphalt = loadImage("Road_Straight.png");
   tileAsphaltJ = loadImage("Road_Jump.png");
