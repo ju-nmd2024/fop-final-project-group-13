@@ -35,6 +35,15 @@ class Modifier {
   }
 }
 
+class Object {
+  constructor(posX, posY, size, surface){
+    this.surface = surface;
+    this.size = size;
+    this.posX = posX;
+    this.posY = posY;
+  }
+}
+
 class Tile {
   constructor(posX, posY, size, surface, attr) {
     this.surface = surface;
@@ -89,6 +98,7 @@ let tileArray = [
   [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
   [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
 ];
+
 
 // Function for tile detection
 function checkPos(posX, posY, surface) {
@@ -247,7 +257,7 @@ let tileSize = 320;
 let state = "mainmenu";
 let lastSecond = 0;
 let amb = new Amb();
-let Broken1Ambamb = new Broken1AmbAmb();
+let Broken1Ambamb = new Broken1Amb();
 
 
 function setup() {
@@ -339,8 +349,7 @@ function grid() {
         o * tileSize,
         tileSize,
         tileDefault,
-        tileRotate
-      );
+        tileRotate);
     }
   }
 }
