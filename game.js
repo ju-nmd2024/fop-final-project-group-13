@@ -42,6 +42,9 @@ class Object {
     this.posX = posX;
     this.posY = posY;
   }
+  draw() {
+    image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
+}
 }
 
 class Tile {
@@ -99,6 +102,24 @@ let tileArray = [
   [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
 ];
 
+let objectArray = [
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
+  ];
 
 // Function for tile detection
 function checkPos(posX, posY, surface) {
@@ -354,6 +375,19 @@ function grid() {
   }
 }
 
+function objectGrid(){
+  for (let n = 0; n < 16; n++){
+    for (let q = 0; q < 16; q++){
+      objectArray[n][q] = new Object(
+        n * tileSiize,
+        q * tileSize,
+        tileSize,
+        tileDefault,
+        tileRotate);
+    }
+  }
+}
+
 // Functions for screens
 function gameScreen() {
   background(200);
@@ -363,11 +397,19 @@ function gameScreen() {
   push();
   translate(a + 500, b + 500); // change to -100, -100 later
   rotate(angle, [width / 2, height / 2, 0]);
+
+  for (let n = 0; n < 16; n++){
+    for (let q = 0; q < 16; q++){
+      objectArray[n][q].draw();
+    }
+  }
+
   for (let i = 0; i < 16; i++) {
     for (let o = 0; o < 16; o++) {
       tileArray[i][o].draw();
     }
   }
+
   pop();
   amb.draw();
   hud();
