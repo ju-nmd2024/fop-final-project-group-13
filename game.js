@@ -10,21 +10,6 @@ class Amb {
   }
 }
 
-class Modifier {
-  constructor(posX, posY, size, surface) {
-    this.surface = surface;
-    this.size = size;
-    this.posX = posX;
-    this.posY = posY;
-    this.pickedUp = false;
-  }
-  draw() {
-    if (!this.pickedUp) {
-      image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
-    }
-  }
-}
-
 class Obst {
   constructor(posX, posY, size, surface){
     this.surface = surface;
@@ -33,7 +18,7 @@ class Obst {
     this.posY = posY;
   }
   draw() {
-    image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
+    image(this.surface, this.posX + x, this.posY + y, this.sizeX, this.sizeY);
 }
 }
 
@@ -309,8 +294,6 @@ function setup() {
   menuBackground = loadImage("MenuBackground.jpg");
   menuStart = loadImage("StartButton.png");
   retryButton = loadImage("ReturnButton.png");
-  modifier = new Modifier(5 * tileSize, 5 * tileSize, 50, wineBottle);
-
   grid();
   level(1);
 }
@@ -364,10 +347,10 @@ function grid() {
   }
 }
 
-function objectGrid(){
+function obstGrid(){
   for (let n = 0; n < 16; n++){
     for (let q = 0; q < 16; q++){
-      objectArray[n][q] = new Object(
+      obstArray[n][q] = new Object(
         n * tileSiize,
         q * tileSize,
         tileSize,
@@ -389,7 +372,7 @@ function gameScreen() {
 
   for (let n = 0; n < 16; n++){
     for (let q = 0; q < 16; q++){
-      objectArray[n][q].draw();
+      obstArray[n][q].draw();
     }
   }
 
