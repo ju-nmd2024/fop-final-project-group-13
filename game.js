@@ -10,16 +10,6 @@ class Amb {
   }
 }
 
-class Broken1Amb {
-  constructor() {}
-  draw() {
-    push();
-    scale(1);
-    image(brokenAbmulance, a + 500, b + 500, ambulanceSize, ambulanceSize);
-    pop();
-  }
-}
-
 class Modifier {
   constructor(posX, posY, size, surface) {
     this.surface = surface;
@@ -35,7 +25,7 @@ class Modifier {
   }
 }
 
-class Object {
+class Obst {
   constructor(posX, posY, size, surface){
     this.surface = surface;
     this.size = size;
@@ -102,24 +92,24 @@ let tileArray = [
   [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
 ];
 
-let objectArray = [
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  [new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object(), new Object()]
-  ];
+let obstArray = [
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()]
+];
 
 // Function for tile detection
 function checkPos(posX, posY, surface) {
@@ -278,7 +268,6 @@ let tileSize = 320;
 let state = "mainmenu";
 let lastSecond = 0;
 let amb = new Amb();
-let Broken1Ambamb = new Broken1Amb();
 
 
 function setup() {
