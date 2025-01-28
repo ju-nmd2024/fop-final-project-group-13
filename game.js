@@ -38,26 +38,26 @@ class Tile {
         maxSpeed = 5;
         acc = 0.35;
 
-      } else if (this.surface == tileIceRoad) {
+      } else if (this.surface === tileIceRoad) {
         maxSpeed = 10;
         acc = 0.8;
 
-      } else if (this.surface == tileAsphalt || this.surface == tileAsphaltR || this.surface == tileAsphalt180 || this.surface == tileAsphaltL || this.surface == tileAsphaltL270 || this.surface == tileAsphaltR270 || this.surface == tileAsphaltR90 || this.surface == tilePark || this.surface == tilePark90 || this.surface == tileParkBlank) {
+      } else if (this.surface === tileAsphalt || this.surface == tileAsphaltR || this.surface == tileAsphalt180 || this.surface == tileAsphaltL || this.surface == tileAsphaltL270 || this.surface == tileAsphaltR270 || this.surface == tileAsphaltR90 || this.surface == tilePark || this.surface == tilePark90 || this.surface == tileParkBlank) {
         maxSpeed = 10;
         acc = 0.003;
 
-      } else if (this.surface == theRock){
+      } else if (this.surface === theRock){
         maxSpeed = -10;
         acc = -2;
 
 
-      } else if (this.surface == tileAsphaltJ) {
-      } else if (this.surface == tileAccident) {
+      } else if (this.surface === tileAsphaltJ) {
+      } else if (this.surface === tileAccident) {
         state = "win";
         maxSpeed = 1;
         acc = 0.0005;
 
-      } else if (this.surface == tileDefault){
+      } else if (this.surface === tileDefault){
         maxSpeed = 1;
         acc = 0.0005;
       }
@@ -65,26 +65,6 @@ class Tile {
   }
 }
 
-
-
-// let obstArray = [
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()]
-// ];
 
 // Tile array, 16x16 tiles, creates the map
 let tileArray = [
