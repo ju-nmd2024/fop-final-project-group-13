@@ -37,24 +37,34 @@ class Tile {
       if (this.surface == tileDirt || this.surface == tileDirtR) {
         maxSpeed = 5;
         acc = 0.35;
+
       } else if (this.surface == tileIceRoad) {
         maxSpeed = 10;
         acc = 0.8;
+
       } else if (this.surface == tileAsphalt || this.surface == tileAsphaltR || this.surface == tileAsphalt180 || this.surface == tileAsphaltL || this.surface == tileAsphaltL270 || this.surface == tileAsphaltR270 || this.surface == tileAsphaltR90 || this.surface == tilePark || this.surface == tilePark90 || this.surface == tileParkBlank) {
         maxSpeed = 10;
         acc = 0.003;
+
+      } else if (this.surface == theRock){
+        maxSpeed = -10;
+        acc = -2;
+
+
       } else if (this.surface == tileAsphaltJ) {
       } else if (this.surface == tileAccident) {
         state = "win";
         maxSpeed = 1;
         acc = 0.0005;
-      } else {
-        maxSpeed = 8;
+
+      } else if (this.surface == tileDefault){
+        maxSpeed = 1;
         acc = 0.0005;
       }
     }
   }
 }
+
 
 
 // let obstArray = [
@@ -98,15 +108,15 @@ let tileArray = [
 
 
 // Function for tile detection
-function checkPos(posX, posY, surface) {
+function checkPos(posX, posY) {
   if (
     a + 500 > posX + tileSize &&
     a + 500 < posX + tileSize * 2 &&
     b + 500 > posY + tileSize &&
     b + 500 < posY + tileSize * 2
   ) {
-    return true;
-  }
+return true;
+}
 }
 
 // Function to place the tiles of the map
