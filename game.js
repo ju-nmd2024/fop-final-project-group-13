@@ -38,8 +38,8 @@ class Tile {
         maxSpeed = 5;
         acc = 0.35;
       } else if (this.surface == tileIceRoad) {
-        maxSpeed = 7;
-        acc = 0.5;
+        maxSpeed = 10;
+        acc = 0.8;
       } else if (this.surface == tileAsphalt || this.surface == tileAsphaltR || this.surface == tileAsphalt180 || this.surface == tileAsphaltL || this.surface == tileAsphaltL270 || this.surface == tileAsphaltR270 || this.surface == tileAsphaltR90 || this.surface == tilePark || this.surface == tilePark90 || this.surface == tileParkBlank) {
         maxSpeed = 10;
         acc = 0.003;
@@ -145,7 +145,7 @@ function level(lvl) {
       tileArray[3][10].surface = tileParkBlank;
       tileArray[1][10].surface = tileAsphaltTurn;
       tileArray[14][6].surface = tileAsphalt;
-      tileArray[14][5].surface = tileAsphalt;
+      tileArray[14][5].surface = theRock;
       tileArray[14][4].surface = tileAsphalt;
       tileArray[14][3].surface = tileAsphaltL;
       tileArray[13][3].surface = tileAsphalt90;
@@ -153,7 +153,7 @@ function level(lvl) {
       tileArray[11][3].surface = tileAsphalt90;
       tileArray[10][3].surface = tileCrossroadL;
       tileArray[3][9].surface = tileAsphalt;
-      tileArray[3][8].surface = tileAsphalt;
+      tileArray[3][8].surface = theRock;
       tileArray[3][7].surface = tileAsphalt;
       tileArray[3][6].surface = tileAsphalt;
       tileArray[3][6].surface = tileAsphalt;
@@ -267,7 +267,6 @@ function setup() {
   brokenAbmulance = loadImage("Stage 1 broken ambulance.png");
   broken2Abmulance = loadImage("Stage 2 broken ambulance.png");
   broken3Abmulance = loadImage("Broken ambulance.png");
-  rock = loadImage("rock.png");
   tileDefault = loadImage("Grass.png");
   tileAsphalt = loadImage("Road_Straight.png");
   tileAsphaltJ = loadImage("Road_Jump.png");
@@ -296,6 +295,7 @@ function setup() {
   menuStart = loadImage("StartButton.png");
   retryButton = loadImage("ReturnButton.png");
   emptyObject = loadImage("blank.png");
+  theRock = loadImage("theRock.png");
   grid();
   level(1);
 }
