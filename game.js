@@ -10,17 +10,17 @@ class Amb {
   }
 }
 
-class Obst {
-  constructor(posX, posY, size, surface){
-    this.surface = surface;
-    this.size = size;
-    this.posX = posX;
-    this.posY = posY;
-  }
-  draw() {
-    image(this.surface, this.posX + x, this.posY + y, this.sizeX, this.sizeY);
-}
-}
+// class Obst {
+//   constructor(posX, posY, sizeO, surface = emptyObject){
+//     this.surface = surface;
+//     this.sizeO = sizeO;
+//     this.posX = posX;
+//     this.posY = posY;
+//   }
+//   draw () {
+//     image(this.surface, this.posX + x, this.posY + y, this.sizeO, this.sizeO);
+// }
+// }
 
 class Tile {
   constructor(posX, posY, size, surface, attr) {
@@ -57,6 +57,25 @@ class Tile {
 }
 
 
+// let obstArray = [
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
+//   [new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()]
+// ];
+
 // Tile array, 16x16 tiles, creates the map
 let tileArray = [
   [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
@@ -77,24 +96,6 @@ let tileArray = [
   [new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile(), new Tile()],
 ];
 
-let obstArray = [
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()],
-[new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst(), new Obst()]
-];
 
 // Function for tile detection
 function checkPos(posX, posY, surface) {
@@ -294,6 +295,7 @@ function setup() {
   menuBackground = loadImage("MenuBackground.jpg");
   menuStart = loadImage("StartButton.png");
   retryButton = loadImage("ReturnButton.png");
+  emptyObject = loadImage("blank.png");
   grid();
   level(1);
 }
@@ -347,18 +349,19 @@ function grid() {
   }
 }
 
-function obstGrid(){
-  for (let n = 0; n < 16; n++){
-    for (let q = 0; q < 16; q++){
-      obstArray[n][q] = new Object(
-        n * tileSiize,
-        q * tileSize,
-        tileSize,
-        tileDefault,
-        tileRotate);
-    }
-  }
-}
+
+// function obstGrid(){
+//   for (let n = 0; n < 16; n++){
+//     for (let q = 0; q < 16; q++){
+//       obstArray[n][q] = new Object(
+//         n * tileSiize,
+//         q * tileSize,
+//         tileSize,
+//         tileDefault,
+//         tileRotate);
+//     }
+//   }
+// }
 
 // Functions for screens
 function gameScreen() {
@@ -370,11 +373,11 @@ function gameScreen() {
   translate(a + 500, b + 500); // change to -100, -100 later
   rotate(angle, [width / 2, height / 2, 0]);
 
-  for (let n = 0; n < 16; n++){
-    for (let q = 0; q < 16; q++){
-      obstArray[n][q].draw();
-    }
-  }
+  // for (let n = 0; n < 16; n++){
+  //   for (let q = 0; q < 16; q++){
+  //     obstArray[n][q].draw();
+  //   }
+  // }
 
   for (let i = 0; i < 16; i++) {
     for (let o = 0; o < 16; o++) {
