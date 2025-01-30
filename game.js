@@ -10,17 +10,6 @@ class Amb {
   }
 }
 
-// class Obst {
-//   constructor(posX, posY, sizeO, surface = emptyObject){
-//     this.surface = surface;
-//     this.sizeO = sizeO;
-//     this.posX = posX;
-//     this.posY = posY;
-//   }
-//   draw () {
-//     image(this.surface, this.posX + x, this.posY + y, this.sizeO, this.sizeO);
-// }
-// }
 
 class Tile {
   constructor(posX, posY, size, surface, attr) {
@@ -119,7 +108,7 @@ function level(lvl) {
       tileArray[5][1].surface = tileAsphalt90;
       tileArray[6][1].surface = tileAsphaltR90;
       tileArray[6][2].surface = tileAsphalt;
-      tileArray[6][3].surface = tileAsphalt;
+      tileArray[6][3].surface = theRock;
       tileArray[6][4].surface = tileAsphaltR180;
       tileArray[5][4].surface = tileAsphalt90;
       tileArray[4][4].surface = tileIceRoad;
@@ -146,8 +135,7 @@ function level(lvl) {
       tileArray[3][8].surface = theRock;
       tileArray[3][7].surface = tileAsphalt;
       tileArray[3][6].surface = tileAsphalt;
-      tileArray[3][6].surface = tileAsphalt;
-      tileArray[3][6].surface = tileAsphaltR;
+
       tileArray[4][6].surface = tileDirtR;
       tileArray[5][6].surface = tileDirtR;
       tileArray[6][6].surface = tileDirtR;
@@ -340,18 +328,6 @@ function grid() {
 }
 
 
-// function obstGrid(){
-//   for (let n = 0; n < 16; n++){
-//     for (let q = 0; q < 16; q++){
-//       obstArray[n][q] = new Object(
-//         n * tileSiize,
-//         q * tileSize,
-//         tileSize,
-//         tileDefault,
-//         tileRotate);
-//     }
-//   }
-// }
 
 // Functions for screens
 function gameScreen() {
@@ -363,11 +339,6 @@ function gameScreen() {
   translate(a + 500, b + 500); // change to -100, -100 later
   rotate(angle, [width / 2, height / 2, 0]);
 
-  // for (let n = 0; n < 16; n++){
-  //   for (let q = 0; q < 16; q++){
-  //     obstArray[n][q].draw();
-  //   }
-  // }
 
   for (let i = 0; i < 16; i++) {
     for (let o = 0; o < 16; o++) {
@@ -409,6 +380,19 @@ function winScreen() {
   text("Driver, You are a livesaver!", 170, 200);
   scale(0.25);
   image(retryButton, 750, 500);
+  frameRate(0);
+}
+
+function collision() {
+  fill(0);
+  textSize(48);
+  push();
+  noStroke();
+  fill(255, 255, 255, 95);
+  rect(165, 120, 725, 120, 5);
+  pop();
+  text("Oh no! You hit the Rock! Try to drive around it", 170, 200);
+  scale(0.25);
   frameRate(0);
 }
 
