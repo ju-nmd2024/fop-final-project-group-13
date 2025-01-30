@@ -36,8 +36,10 @@ class Tile {
         acc = 0.003;
 
       } else if (this.surface === theRock){
+        state = "collision";
         maxSpeed = -10;
         acc = -2;
+
 
       } else if (this.surface === tileAsphaltJ) {
       } else if (this.surface === tileAccident) {
@@ -82,9 +84,9 @@ function checkPos(posX, posY) {
     a + 500 < posX + tileSize * 2 &&
     b + 500 > posY + tileSize &&
     b + 500 < posY + tileSize * 2
-  ) {
-return true;
-}
+  ) 
+{ return true; }
+{ return false; }
 }
 
 // Function to place the tiles of the map
@@ -354,7 +356,7 @@ function gameScreen() {
 //function for start button
 function mouseClicked() {
   if (mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
-    state = "game", "collision";
+    state = "game";
   }
 }
 // function that created the start screen (main menu)
@@ -391,8 +393,9 @@ function collision() {
   fill(255, 255, 255, 95);
   rect(165, 120, 725, 120, 5);
   pop();
-  text("Oh no! You hit the Rock! Try to drive around it", 170, 200);
+  text("Oh no! You hit the Rock!", 220, 200);
   scale(0.25);
+  image(retryButton, 1900, 1200);
   frameRate(0);
 }
 
