@@ -39,7 +39,6 @@ class Tile {
         maxSpeed = -10;
         acc = -2;
 
-
       } else if (this.surface === tileAsphaltJ) {
       } else if (this.surface === tileAccident) {
         state = "win";
@@ -336,7 +335,7 @@ function gameScreen() {
   movemap();
   rotateMap();
   push();
-  translate(a + 500, b + 500); // change to -100, -100 later
+  translate(a + 500, b + 500);
   rotate(angle, [width / 2, height / 2, 0]);
 
 
@@ -351,10 +350,11 @@ function gameScreen() {
   hud();
 }
 
+
 //function for start button
 function mouseClicked() {
   if (mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
-    state = "game";
+    state = "game", "collision";
   }
 }
 // function that created the start screen (main menu)
@@ -400,6 +400,8 @@ function collision() {
 function draw() {
   if (state == "game") {
     gameScreen();
+  } else if (state == "collision") {
+    collision();
   }
   if (state == "mainmenu") {
     mainMenu();
