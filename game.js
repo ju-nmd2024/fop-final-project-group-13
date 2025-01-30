@@ -1,7 +1,10 @@
 //Class is a 
 // Classes for game objects
 class Amb {
-  constructor() {}
+  constructor(ambulance, crashedAmbulance) {
+    this.ambulance = ambulance;
+    this.crashedAmbulance = crashedAmbulance;
+  }
   draw() {
     push();
     scale(1);
@@ -275,6 +278,7 @@ function setup() {
   retryButton = loadImage("ReturnButton.png");
   emptyObject = loadImage("blank.png");
   theRock = loadImage("theRock.png");
+  crashedAmbulance = loadImage("Broken_ambulance.png");
   grid();
   level(1);
 }
@@ -387,6 +391,12 @@ function winScreen() {
   frameRate(0);
 }
 
+function resetGame(){
+  if (mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
+  state = "mainMenu";
+}
+}
+
 function collision() {
   fill(0);
   textSize(48);
@@ -398,14 +408,16 @@ function collision() {
   text("Oh no! You hit the Rock!", 220, 200);
   scale(0.25);
   image(retryButton, 750, 500);
-  frameRate(120);
+  frameRate(0);
 }
+
 
 //draws the gamestates for starting the game, playing and win.
 function draw() {
   if (state == "game") {
     gameScreen();
-  } else if (state == "collision") {
+  } 
+  if (state == "collision") {
     collision();
   }
   if (state == "mainmenu") {
