@@ -359,6 +359,8 @@ function mouseClicked() {
     state = "game";
   }
 }
+
+
 // function that created the start screen (main menu)
 function mainMenu() {
   scale(0.7);
@@ -395,8 +397,8 @@ function collision() {
   pop();
   text("Oh no! You hit the Rock!", 220, 200);
   scale(0.25);
-  image(retryButton, 1900, 1200);
-  frameRate(0);
+  image(retryButton, 750, 500);
+  frameRate(120);
 }
 
 //draws the gamestates for starting the game, playing and win.
