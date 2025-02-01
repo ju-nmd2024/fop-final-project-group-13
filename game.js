@@ -246,9 +246,7 @@ function setup() {
 
   //loads the images
   ambulance = loadImage("Ambulance.png");
-  brokenAbmulance = loadImage("Stage 1 broken ambulance.png");
-  broken2Abmulance = loadImage("Stage 2 broken ambulance.png");
-  broken3Abmulance = loadImage("Broken ambulance.png");
+  broken3Abmulance = loadImage("Broken_ambulance.png");
   tileDefault = loadImage("Grass.png");
   tileAsphalt = loadImage("Road_Straight.png");
   tileAsphaltJ = loadImage("Road_Jump.png");
