@@ -57,16 +57,15 @@ class Tile {
   }
 }
 
-
 // Tile array, 16x16 tiles, creates the map
+// //The following 8 lines of code was adapted with the help of Mathias Golebiak
 let tileArray = [];
-
-for(let q = 0; q < 16; q++ ){
-  let row = [];
-  for(let w = 0; w < 16; w++){
-    row.push(new Tile());
+for(let q = 0; q < 16; q++ ){ //Creates row in X-axis
+  let row = []; //Work per row
+  for(let w = 0; w < 16; w++){ //Creates column in Y-axis
+    row.push(new Tile()); //Builds array dynamically by adding elemnts one at a time
   }
-  tileArray.push(row);
+  tileArray.push(row); //Ads the completed row to the tile array
 }
 
 // Function for tile detection
