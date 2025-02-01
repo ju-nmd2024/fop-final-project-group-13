@@ -77,7 +77,6 @@ function checkPos(posX, posY) {
     b + 500 < posY + tileSize * 2
   ) 
 { return true; }
-{ return false; }
 }
 
 // Function to place the tiles of the map
@@ -341,16 +340,40 @@ function gameScreen() {
   hud();
 }
 
+function resetGame() {
+  // Reset ambulance and position
+  a = x = 0;
+  b = y = 0;
+  angle = 0;
+  speed = 0;
+  maxSpeed = 10;
+  acc = 0.003;
+  timer = 120;  // Reset timer
+
+  // Reset the tile map to initial state
+  grid(); // Reinitialize the grid
+  level(1); // Load level 1 (you can change this if you have more levels)
+
+  // Reset other relevant variables
+  time = 0;
+  speedCheck = false;
+  speedStore = 0;
+
+  // Reset the state to "mainmenu"
+  state = "mainmenu";
+}
+
 //function for start button
 function mouseClicked() {
   // Start the game from the main menu
   if (state == "mainmenu" && mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
+    resetGame();
     state = "game"; // Start the game when start button is clicked
   }
 
-  // If game is won or collision occurs, reset game to main menu
-  if (state == "win" && mouseX >= 750 - 75 && mouseX <= 750 + 75 && mouseY >= 500 - 75 && mouseY <= 500 + 75) {
-    resetGame(); // Reset to main menu after win
+  if(state == "win" && mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180){
+    resetGame();
+    state = "mainmenu"; // Start the game when start button is clicked
   }
 }
 
@@ -377,20 +400,9 @@ function winScreen() {
   pop();
   text("Driver, You are a lifesaver!", 170, 200);
   scale(0.25);
-  image(retryButton, 750, 500);
-
-  // Check for mouse click on the retry button to go back to the main menu
-  if (mouseIsPressed) {
-    if (mouseX >= 750 - 75 && mouseX <= 750 + 75 && mouseY >= 500 - 75 && mouseY <= 500 + 75) {
-      state = "mainmenu"; // Transition to the main menu when retry button is clicked
-    }
-  }
+  image(retryButton, 350, 450);
 }
 
-
-function resetGame() {
-  state = "mainmenu"; // Transition to the main menu when retry button is clicked
-}
 
 //draws the gamestates for starting the game, playing and win.
 function draw() {
