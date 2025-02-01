@@ -188,15 +188,8 @@ function hud() {
     lastSecond = currentSecond;
   }
   if (timer == 0) {
-    fill(1);
-    textSize(48);
-    push();
-    noStroke();
-    fill(255, 255, 255, 95);
-    rect(165, 120, 725, 120, 5);
-    pop();
-    text("You did not get there in time!", 170, 200);
-    frameRate(0);
+    state = "late";
+    late();
   }
 }
 
@@ -216,7 +209,7 @@ let maxSpeed = 10;
 let speedCheck = false;
 let speedStore = 0;
 let acc = 0.003;
-let timer = 120;
+let timer = 4;
 let tileRotate = 0;
 let tileSize = 320;
 let state = "mainmenu";
@@ -342,13 +335,15 @@ function gameScreen() {
 
 function resetGame() {
   // Reset ambulance and position
-  a = x = 0;
-  b = y = 0;
+  x = 0;
+  a = 0;
+  y = 0;
+  b = 0;
   angle = 0;
   speed = 0;
   maxSpeed = 10;
   acc = 0.003;
-  timer = 120;  // Reset timer
+  timer = 4;  // Reset timer
 
   // Reset the tile map to initial state
   grid(); // Reinitialize the grid
@@ -371,7 +366,7 @@ function mouseClicked() {
     state = "game"; // Start the game when start button is clicked
   }
 
-  if(state == "win" && mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180){
+  if(state == "win" || state == "late" && mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180){
     resetGame();
     state = "mainmenu"; // Start the game when start button is clicked
   }
@@ -403,6 +398,18 @@ function winScreen() {
   image(retryButton, 350, 450);
 }
 
+function late() {
+  fill(0);
+  textSize(48);
+  push();
+  noStroke();
+  fill(255, 255, 255, 95);
+  rect(165, 120, 725, 120, 5);
+  pop();
+  text("You did not get there in time!", 170, 200);
+  scale(0.25);
+  image(retryButton, 350, 450);
+}
 
 //draws the gamestates for starting the game, playing and win.
 function draw() {
@@ -414,5 +421,8 @@ function draw() {
   }
   if (state == "win") {
     winScreen();
+  }
+  if (state == "late"){
+    late();
   }
 }
