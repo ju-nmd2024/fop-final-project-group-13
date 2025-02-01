@@ -39,7 +39,6 @@ class Tile {
         acc = 0.003;
 
       } else if (this.surface === theRock){
-        state = "collision";
         maxSpeed = -10;
         acc = -2;
 
@@ -47,11 +46,11 @@ class Tile {
       } else if (this.surface === tileAsphaltJ) {
       } else if (this.surface === tileAccident) {
         state = "win";
-        maxSpeed = 1;
+        maxSpeed = 10;
         acc = 0.0005;
 
       } else if (this.surface === tileDefault){
-        maxSpeed = 1;
+        maxSpeed = 10;
         acc = 0.0005;
       }
     }
@@ -139,7 +138,6 @@ function level(lvl) {
       tileArray[3][8].surface = theRock;
       tileArray[3][7].surface = tileAsphalt;
       tileArray[3][6].surface = tileAsphalt;
-
       tileArray[4][6].surface = tileDirtR;
       tileArray[5][6].surface = tileDirtR;
       tileArray[6][6].surface = tileDirtR;
@@ -354,11 +352,16 @@ function gameScreen() {
   hud();
 }
 
-
 //function for start button
 function mouseClicked() {
-  if (mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
-    state = "game";
+  // Start the game from the main menu
+  if (state == "mainmenu" && mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
+    state = "game"; // Start the game when start button is clicked
+  }
+
+  // If game is won or collision occurs, reset game to main menu
+  if (state == "win" && mouseX >= 750 - 75 && mouseX <= 750 + 75 && mouseY >= 500 - 75 && mouseY <= 500 + 75) {
+    resetGame(); // Reset to main menu after win
   }
 }
 
@@ -383,41 +386,28 @@ function winScreen() {
   fill(255, 255, 255, 95);
   rect(165, 120, 725, 120, 5);
   pop();
-  text("Driver, You are a livesaver!", 170, 200);
+  text("Driver, You are a lifesaver!", 170, 200);
   scale(0.25);
   image(retryButton, 750, 500);
-  frameRate(0);
+
+  // Check for mouse click on the retry button to go back to the main menu
+  if (mouseIsPressed) {
+    if (mouseX >= 750 - 75 && mouseX <= 750 + 75 && mouseY >= 500 - 75 && mouseY <= 500 + 75) {
+      state = "mainmenu"; // Transition to the main menu when retry button is clicked
+    }
+  }
 }
 
-function resetGame(){
-  if (mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
-  state = "mainMenu";
-}
-}
 
-function collision() {
-  fill(0);
-  textSize(48);
-  push();
-  noStroke();
-  fill(255, 255, 255, 95);
-  rect(165, 120, 725, 120, 5);
-  pop();
-  text("Oh no! You hit the Rock!", 220, 200);
-  scale(0.25);
-  image(retryButton, 750, 500);
-  frameRate(0);
+function resetGame() {
+  state = "mainmenu"; // Transition to the main menu when retry button is clicked
 }
-
 
 //draws the gamestates for starting the game, playing and win.
 function draw() {
   if (state == "game") {
     gameScreen();
   } 
-  if (state == "collision") {
-    collision();
-  }
   if (state == "mainmenu") {
     mainMenu();
   }
