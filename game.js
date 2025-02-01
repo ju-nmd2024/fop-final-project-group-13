@@ -60,8 +60,9 @@ class Tile {
 
 // Tile array, 16x16 tiles, creates the map
 let tileArray = [];
-for(let q = 0; q < 16; q++){
-  let row = []; // x-axis
+
+for(let q = 0; q < 16; q++ ){
+  let row = [];
   for(let w = 0; w < 16; w++){
     row.push(new Tile());
   }
