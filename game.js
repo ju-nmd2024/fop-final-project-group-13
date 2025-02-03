@@ -1,5 +1,5 @@
-//Class is a 
-// Classes for game objects
+
+// Class for game object Ambulance
 class Amb {
   constructor(ambulance, crashedAmbulance) {
     this.ambulance = ambulance;
@@ -13,7 +13,7 @@ class Amb {
   }
 }
 
-
+// Class for the tiles
 class Tile {
   constructor(posX, posY, size, surface, attr) {
     this.surface = surface;
@@ -25,7 +25,6 @@ class Tile {
   draw() {
     image(this.surface, this.posX + x, this.posY + y, this.size, this.size);
     if (checkPos(this.posX + x, this.posY + y, this.surface)) {
-      // rect(this.posX + x, this.posY + y, tileSize * 2, tileSize * 2);
       if (this.surface == tileDirt || this.surface == tileDirtR) {
         maxSpeed = 5;
         acc = 0.35;
@@ -57,12 +56,12 @@ class Tile {
   }
 }
 
-// Tile array, 16x16 tiles, creates the map
+// For loop Tile array, 16x16 tiles, creates the map
 // //The following 8 lines of code was adapted with the help of Mathias Golebiak
 let tileArray = [];
-for(let q = 0; q < 16; q++ ){ //Creates row in X-axis
+for(let q = 0; q < 16; q++ ){ 
   let row = []; //Work per row
-  for(let w = 0; w < 16; w++){ //Creates column in Y-axis
+  for(let w = 0; w < 16; w++){
     row.push(new Tile()); //Builds array dynamically by adding elemnts one at a time
   }
   tileArray.push(row); //Ads the completed row to the tile array
@@ -99,7 +98,7 @@ function level(lvl) {
       tileArray[5][1].surface = tileAsphalt90;
       tileArray[6][1].surface = tileAsphaltR90;
       tileArray[6][2].surface = tileAsphalt;
-      tileArray[6][3].surface = theRock;
+      tileArray[6][3].surface = tileAsphalt;
       tileArray[6][4].surface = tileAsphaltR180;
       tileArray[5][4].surface = tileAsphalt90;
       tileArray[4][4].surface = tileIceRoad;
@@ -343,18 +342,14 @@ function resetGame() {
   speed = 0;
   maxSpeed = 10;
   acc = 0.003;
-  timer = 120;  // Reset timer
+  timer = 120;
 
-  // Reset the tile map to initial state
-  grid(); // Reinitialize the grid
+  grid();
   level(1); // Load level 1 (you can change this if you have more levels)
 
-  // Reset other relevant variables
   time = 0;
   speedCheck = false;
   speedStore = 0;
-
-  // Reset the state to "mainmenu"
   state = "mainmenu";
 }
 
@@ -363,17 +358,17 @@ function mouseClicked() {
   // Start the game from the main menu
   if (state == "mainmenu" && mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180) {
     resetGame();
-    state = "game"; // Start the game when start button is clicked
+    state = "game";
   }
 
   if(state == "win" || state == "late" && mouseX >= 40 && mouseX <= 210 && mouseY >= 110 && mouseY <= 180){
     resetGame();
-    state = "mainmenu"; // Start the game when start button is clicked
+    state = "mainmenu";
   }
 }
 
 
-// function that created the start screen (main menu)
+// function that created the different screens
 function mainMenu() {
   scale(0.7);
   image(menuBackground, 750, 500);
@@ -411,7 +406,7 @@ function late() {
   image(retryButton, 350, 450);
 }
 
-//draws the gamestates for starting the game, playing and win.
+//draws the gamestates for starting the game, late and win.
 function draw() {
   if (state == "game") {
     gameScreen();
