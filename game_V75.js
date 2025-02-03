@@ -50,7 +50,7 @@ class Tile {
         acc = 0.0005;
 
       } else if (this.surface === tileDefault){
-        maxSpeed = 10;
+        maxSpeed = 1;
         acc = 0.0005;
       }
     }
@@ -343,7 +343,7 @@ function resetGame() {
   speed = 0;
   maxSpeed = 10;
   acc = 0.003;
-  timer = 4;  // Reset timer
+  timer = 120;  // Reset timer
 
   // Reset the tile map to initial state
   grid(); // Reinitialize the grid
