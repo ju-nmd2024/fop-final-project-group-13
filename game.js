@@ -124,7 +124,7 @@ function level(lvl) {
       tileArray[3][9].surface = tileAsphalt;
       tileArray[3][8].surface = theRock;
       tileArray[3][7].surface = tileAsphalt;
-      tileArray[3][6].surface = tileAsphalt;
+      tileArray[3][6].surface = tileAsphaltR;
       tileArray[4][6].surface = tileDirtR;
       tileArray[5][6].surface = tileDirtR;
       tileArray[6][6].surface = tileDirtR;
